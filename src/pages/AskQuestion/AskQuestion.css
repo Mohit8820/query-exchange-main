@@ -1,0 +1,49 @@
+.ask-ques-container {
+  margin: auto;
+  max-width: 80vw;
+  min-height: 90vh;
+}
+
+.ask-ques-container h1 {
+  padding: 50px 0px 7px 0px;
+}
+
+.ask-ques-container form .ask-form-container {
+  padding: 20px;
+  box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%),
+    0 1px 4px rgb(0 0 0 / 10%);
+  border: #037ecb 0.001rem solid;
+  border-radius: 1rem;
+  background-color: #e2f7fd85;
+}
+
+.ask-form-container {
+  position: relative;
+}
+
+.ask-form-container label h4 {
+  margin-bottom: 0%;
+}
+
+.ask-form-container label p {
+  margin: 0%;
+  font-size: 13px;
+  padding: 3px 0px;
+}
+
+.ask-form-container label input,
+.ask-form-container label textarea {
+  padding: 10px;
+  border: solid 1px #0000003e;
+  font-family: "Roboto", sans-serif;
+  width: calc(100% - 20px);
+  resize: vertical;
+}
+
+.submit-btn {
+  position: absolute !important;
+  bottom: 1.5rem;
+  right: 20%;
+  /* height: 3rem; */
+  font-size: 1.2rem !important;
+}

@@ -1,0 +1,26 @@
+.question-bar {
+  width: 70vw;
+  margin: 5rem auto;
+}
+.display-ques {
+  padding: 0 2rem 2rem;
+
+  border-radius: 0.5rem;
+  /* text-align: center; */
+  background-color: #e2f7fd85;
+  margin-bottom: 0.1rem;
+  border: #037ecb 0.001rem solid;
+}
+.answers {
+  background-color: aliceblue;
+  border: #646668 0.001rem solid;
+  border-radius: 0.5rem;
+  padding: 0 2rem 2rem;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.answers::-webkit-scrollbar {
+  display: none;
+}

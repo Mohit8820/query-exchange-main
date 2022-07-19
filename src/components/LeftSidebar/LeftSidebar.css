@@ -1,0 +1,16 @@
+.left-side {
+  margin-top: 5rem;
+  text-align: center;
+}
+.toggle-buttons {
+  width: 10rem;
+  background: #fff;
+}
+.toggle-buttons button {
+  border: 0.1rem solid rgba(0, 0, 0, 0.197);
+  font-family: "Andika New Basic", sans-serif;
+  color: black;
+}
+/* 
+.toggle-buttons button:hover {
+} */
