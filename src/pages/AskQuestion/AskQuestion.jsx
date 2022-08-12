@@ -41,7 +41,7 @@ function AskQuestion(props) {
   var s = String(today.getSeconds()).padStart(2, "0");
 
   var now = yyyy + "-" + mm + "-" + dd + " " + h + ":" + m + ":" + s;
-  console.log(now);
+  //console.log(now);
   const id = generateUniqueId({
     length: 5,
     useLetters: false,
@@ -66,9 +66,9 @@ function AskQuestion(props) {
       },
     ],
   });
-  console.log("abc");
-  console.log(ques.askedOn);
-  console.log("abc");
+  // console.log("abc");
+  // console.log(ques.askedOn);
+  // console.log("abc");
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -84,7 +84,6 @@ function AskQuestion(props) {
 
   const submitQues = (event) => {
     props.onAdd(ques);
-    event.preventDefault();
     navigate("/home");
   };
 
@@ -104,7 +103,7 @@ function AskQuestion(props) {
               value={ques.questionTitle}
               type="text"
               placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-              required="true"
+              required={true}
             />
           </label>
           <label htmlFor="ask-ques-body">

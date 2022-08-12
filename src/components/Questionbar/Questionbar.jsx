@@ -28,6 +28,7 @@ const Questionsbar = (props) => {
 
   var flag = false;
   const [answers, setAnswers] = useState(question.answer);
+
   function addAns(value) {
     setAnswers((prevAnswers) => {
       return [...prevAnswers, value];

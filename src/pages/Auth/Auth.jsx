@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Auth.css";
 import icon from "../../assets/icon.jpg";
 
@@ -24,9 +24,13 @@ const Auth = () => {
     navigate("/home", { state: { flag: 1, name: user } });
   };
 
+  // useEffect(() => {
+  //   console.log("rens=dered");
+  // }, [isSignup]);
+
   return (
-    <section class="auth-section">
-      <div class="auth-container-2">
+    <section className="auth-section">
+      <div className="auth-container-2">
         {!isSignup && (
           <img src={icon} alt="stack overflow" className="login-logo" />
         )}

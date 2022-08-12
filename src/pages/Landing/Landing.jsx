@@ -28,9 +28,9 @@ function LandingFrameMessage() {
   };
   return (
     <div style={style}>
-      <div style={{ "font-size": "96px" }}>Hey!! Doubts?</div>
+      <div style={{ fontSize: "96px" }}>Hey!! Doubts?</div>
 
-      <div style={{ "font-size": "36px" }}>
+      <div style={{ fontSize: "36px" }}>
         Click on get started...ask your queries and your fellow mates and
         teachers will answer them.
       </div>

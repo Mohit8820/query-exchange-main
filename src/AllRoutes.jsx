@@ -99,20 +99,7 @@ const AllRoutes = () => {
       userPosted: "mano",
       userId: 1,
       askedOn: "jan 1",
-      answer: [
-        {
-          answerBody: "<span>a</span>",
-          userAnswered: "kumar",
-          //   answeredOn: "jan 2",
-          userId: 2,
-        },
-        {
-          answerBody: "<div><h2>Answer 2</h2></div>",
-          userAnswered: "kumar 333",
-          //   answeredOn: "jan 2",
-          userId: 22,
-        },
-      ],
+      answer: [],
     },
   ]);
   function addQues(ques) {
