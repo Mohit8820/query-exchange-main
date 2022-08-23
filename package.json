@@ -2,10 +2,9 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "engines": 
-  {
-    "node":"16.10.0"
-},
+  "engines": {
+    "node": "16.10.0"
+  },
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -31,10 +30,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-client": "react-scripts start",
+    "build": "react-scripts build && (cd ../server && npm install)",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "cd ../server && npm start"
   },
   "eslintConfig": {
     "extends": [
