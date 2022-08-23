@@ -27,7 +27,7 @@ const Questionsbar = (props) => {
   // };
 
   var flag = false;
-  const [answers, setAnswers] = useState(question.answer);
+  const [answers, setAnswers] = useState(question.answers);
 
   function addAns(value) {
     setAnswers((prevAnswers) => {
@@ -68,17 +68,17 @@ const Questionsbar = (props) => {
       <div className="answers">
         <h3>Answers</h3>
         <hr></hr>
-        {answers.map((answer, key) => {
+        {answers.map((answer, index) => {
           return (
-            <div>
+            <React.Fragment key={index}>
               <div dangerouslySetInnerHTML={{ __html: answer.answerBody }} />
               <hr></hr>
-            </div>
+            </React.Fragment>
           );
         })}
       </div>
 
-      <Editor add={addAns} />
+      <Editor add={addAns} qid={question._id} />
     </div>
   );
 };

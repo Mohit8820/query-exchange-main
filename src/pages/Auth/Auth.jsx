@@ -4,7 +4,7 @@ import icon from "../../assets/icon.jpg";
 
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Auth = () => {
+const Auth = (props) => {
   const location = useLocation();
 
   const [isSignup, setIsSignup] = useState(location.state);
@@ -21,12 +21,14 @@ const Auth = () => {
   const navigate = useNavigate();
 
   const toQuestionshome = () => {
-    navigate("/home", { state: { flag: 1, name: user } });
+    props.getUser(user);
+    navigate("/home");
   };
 
-  // useEffect(() => {
-  //   console.log("rens=dered");
-  // }, [isSignup]);
+  useEffect(() => {
+    setIsSignup(!isSignup);
+    console.log("rendered");
+  }, [location.state]);
 
   return (
     <section className="auth-section">

@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 
 const HomeMainbar = (props) => {
   const location = useLocation();
-  const user = 1;
+  const user = props.user;
   const navigate = useNavigate();
 
   // const [newQues, setNewQues] = useState(props.question.newQues);
@@ -25,7 +25,7 @@ const HomeMainbar = (props) => {
       alert("login or signup to ask a question");
       navigate("/Auth");
     } else {
-      navigate("/AskQuestion");
+      navigate("/AskQuestion", { state: user });
     }
   };
 

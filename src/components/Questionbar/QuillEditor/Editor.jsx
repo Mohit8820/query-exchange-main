@@ -16,16 +16,33 @@ export const Editor = (props) => {
 
   function handleChange(value) {
     setState({ value });
+
     setAns((prevAns) => {
       return {
         ...prevAns,
         answerBody: value,
       };
     });
+    console.log(ans);
   }
-  // console.log(ans);
+
+  const postAnswer = {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(ans),
+  };
 
   const handleClick = () => {
+    fetch(
+      `http://localhost:4000/api/questions/${props.qid.toString()}`,
+      postAnswer
+    )
+      .then((response) => response.json())
+      .then((text) => {
+        console.log(text);
+      })
+      .catch((error) => console.error(error));
+
     props.add(ans);
     setState({ value: null });
   };

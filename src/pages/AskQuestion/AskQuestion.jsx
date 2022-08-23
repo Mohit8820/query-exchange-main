@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import "./AskQuestion.css";
 import Box from "@mui/material/Box";
@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 const generateUniqueId = require("generate-unique-id");
 
 function AskQuestion(props) {
+  const location = useLocation();
+  const user = location.state;
   //   const [ques, setques] = useState({
   //     // _id: null,
   //     // upVotes: null,
@@ -56,7 +58,7 @@ function AskQuestion(props) {
     questionTags: "",
     userPosted: "",
     askedOn: now,
-    userId: "",
+    userId: user,
     answer: [
       {
         answerBody: "",
@@ -82,9 +84,28 @@ function AskQuestion(props) {
 
   const navigate = useNavigate();
 
+  const postRequest = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      questionTitle: ques.questionTitle,
+      questionBody: ques.questionBody,
+      questionTags: ques.questionTags,
+      askedOn: ques.askedOn,
+      userId: ques.userId,
+    }),
+  };
+
   const submitQues = (event) => {
-    props.onAdd(ques);
-    navigate("/home");
+    fetch("http://localhost:4000/api/questions/", postRequest)
+      .then((response) => response.json())
+      .then((text) => {
+        console.log(text);
+      })
+      .catch((error) => console.error(error));
+    // props.onAdd(ques);
+    console.log("a");
+    navigate("/home", { state: { flag: 1, name: user } });
   };
 
   return (
