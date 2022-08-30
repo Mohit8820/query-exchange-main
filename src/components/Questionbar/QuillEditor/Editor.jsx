@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "./EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import "./styles.css";
-import { Button } from "@mui/material";
+
+import { useHttpClient } from "../../../hooks/http-hook";
+import { AuthContext } from "../../../contexts/auth-context";
+import ErrorModal from "../../UIElements/ErrorModal";
+import LoadingSpinner from "../../UIElements/LoadingSpinner";
 
 export const Editor = (props) => {
-  const [ans, setAns] = React.useState({
+  const auth = useContext(AuthContext);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+  const [ans, setAns] = useState({
+    //try to remove it and send asked on to backend
     answerBody: "",
-    userAnswered: "",
     //     //     //   answeredOn: "jan 2",
-    userId: "",
+    userId: auth.userId,
   });
-  const [state, setState] = React.useState({ value: null });
+  const [state, setState] = useState({ value: null });
 
   function handleChange(value) {
     setState({ value });
@@ -23,53 +30,62 @@ export const Editor = (props) => {
         answerBody: value,
       };
     });
-    console.log(ans);
   }
 
-  const postAnswer = {
+  /*const postAnswer = {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(ans),
-  };
+  };*/
 
-  const handleClick = () => {
-    fetch(
-      `http://localhost:4000/api/questions/${props.qid.toString()}`,
+  const handleClick = async (event) => {
+    event.preventDefault();
+    try {
+      await sendRequest(
+        `http://localhost:4000/api/questions/${props.qid}`,
+        "PATCH",
+        JSON.stringify(ans),
+        { "Content-Type": "application/json" }
+      );
+      props.add();
+    } catch (err) {}
+
+    /* fetch(
+      ,
       postAnswer
     )
       .then((response) => response.json())
       .then((text) => {
         console.log(text);
+        props.add();
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error));*/
 
-    props.add(ans);
     setState({ value: null });
   };
   return (
-    <div>
-      <h3>Your Answer</h3>
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
+      <div>
+        <h3>Your Answer</h3>
 
-      <div className="text-editor">
-        <EditorToolbar />
-        <ReactQuill
-          theme="snow"
-          value={state.value}
-          onChange={handleChange}
-          placeholder={"Write something awesome..."}
-          modules={modules}
-          formats={formats}
-        />
+        <div className="text-editor">
+          {isLoading && <LoadingSpinner asOverlay />}
+          <EditorToolbar />
+          <ReactQuill
+            theme="snow"
+            value={state.value}
+            onChange={handleChange}
+            placeholder={"Write something awesome..."}
+            modules={modules}
+            formats={formats}
+          />
+        </div>
+        <button type="submit" onClick={handleClick} className="addButton">
+          Submit
+        </button>
       </div>
-      <Button
-        color="primary"
-        onClick={handleClick}
-        variant="contained"
-        className="addButton"
-      >
-        Submit
-      </Button>
-    </div>
+    </React.Fragment>
   );
 };
 

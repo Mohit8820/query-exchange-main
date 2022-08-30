@@ -10,11 +10,7 @@ const Questions = (props) => {
     navigate("/Questions", { state: question });
     console.log(question);
   };
-  // const sendQues = (event) => {
-  //   props.addAns(question);
-  //   event.preventDefault();
-  //   navigate("/Questions");
-  // };
+
   return (
     <div className="display-question-container">
       {/* <div className="display-votes-ans">

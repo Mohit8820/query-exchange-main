@@ -33,7 +33,7 @@ const HomeMainbar = (props) => {
         </Button>
       </div>
       <div className="display-questions">
-        {props.questions === null ? (
+        {props.questions.length === 0 ? (
           <h1>Loading...</h1>
         ) : (
           <>

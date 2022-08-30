@@ -85,7 +85,7 @@ function Contact() {
                 height: 40,
               }}
             />
-            <span>mohitsah8820@gmail.com aditi28singh01@gmail.com</span>
+            <span>mohitsah8820@gmail.com</span>
           </p>
           <p>
             <CallIcon
@@ -96,7 +96,7 @@ function Contact() {
                 height: 40,
               }}
             />
-            <span>+91 7301176797</span>
+            <span>+91 7903425458</span>
           </p>
           <p>
             <WhatsAppIcon
@@ -107,11 +107,11 @@ function Contact() {
                 height: 40,
               }}
             />
-            <span>7301176797</span>
+            <span>7903425458</span>
           </p>
         </div>
       </Paper>
-      <footer>&copy; MOHIT PRASAD SAH || ADITI KUMARI</footer>
+      <footer>&copy; MOHIT PRASAD SAH</footer>
     </div>
   );
 }
