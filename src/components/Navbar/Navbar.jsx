@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../../contexts/auth-context";
 import logo from "../../assets/icon.jpg";
 import search from "../../assets/search-solid.svg";
 import Avatar from "../Avatar/Avatar";
@@ -7,15 +9,15 @@ import "./Navbar.css";
 import Button from "@mui/material/Button";
 
 const Navbar = () => {
-  var User = null;
+  const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const tologin = () => {
-    navigate("/Auth", { state: false });
+    navigate("/Auth", { state: "false" });
   };
   const tosignin = () => {
-    navigate("/Auth", { state: true });
+    navigate("/Auth", { state: "true" });
   };
 
   return (
@@ -34,7 +36,7 @@ const Navbar = () => {
           <input type="text" placeholder="Search..." />
           <img src={search} alt="search" width="18" className="search-icon" />
         </form>
-        {User == null ? (
+        {!auth.isLoggedIn ? (
           <>
             <Button
               variant="text"
@@ -66,7 +68,15 @@ const Navbar = () => {
                 R
               </Link>
             </Avatar>
-            <button className="nav-item nav-links">Log Out</button>
+            <button
+              className="nav-item nav-links"
+              onClick={() => {
+                navigate("/home");
+                auth.logout();
+              }}
+            >
+              Log Out
+            </button>
           </>
         )}
       </div>

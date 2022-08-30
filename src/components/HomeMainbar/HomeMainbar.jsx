@@ -1,31 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../../contexts/auth-context";
 import "./HomeMainbar.css";
 import QuestionList from "./QuestionList";
 import Button from "@mui/material/Button";
 
 const HomeMainbar = (props) => {
-  const location = useLocation();
-  const user = props.user;
+  /*const user = props.user;*/
+  const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // const [newQues, setNewQues] = useState(props.question.newQues);
-  // if (newQues) {
-  //   setQuestionList((prevQuestions) => [
-  //     ...prevQuestions,
-  //     props.question.question,
-  //   ]);
-  //   setNewQues(!newQues);
-  //   console.log(questionsList);
-  // }
-  console.log(props);
-
   const checkAuth = () => {
-    if (user === null) {
+    if (!auth.isLoggedIn) {
       alert("login or signup to ask a question");
       navigate("/Auth");
     } else {
-      navigate("/AskQuestion", { state: user });
+      navigate("/AskQuestion" /*, { state: user }*/);
     }
   };
 

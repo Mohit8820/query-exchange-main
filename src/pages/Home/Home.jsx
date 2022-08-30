@@ -19,7 +19,7 @@ const Home = (props) => {
 
   const [filter, setFilter] = useState("all");
 
-  const user = props.user;
+  /* const user = props.user;*/
   function getFilter(fil) {
     setFilter(fil);
   }
@@ -27,7 +27,10 @@ const Home = (props) => {
     <div className="home-container-1">
       <LeftSidebar onGet={getFilter} />
       <div className="home-container-2">
-        <HomeMainbar questions={questionsList} filter={filter} user={user} />
+        <HomeMainbar
+          questions={questionsList}
+          filter={filter} /*user={user}*/
+        />
         <RightSidebar />
       </div>
     </div>

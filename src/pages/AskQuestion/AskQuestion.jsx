@@ -12,8 +12,9 @@ import Button from "@mui/material/Button";
 const generateUniqueId = require("generate-unique-id");
 
 function AskQuestion(props) {
-  const location = useLocation();
+  /*const location = useLocation();
   const user = location.state;
+  console.log(user);*/
   //   const [ques, setques] = useState({
   //     // _id: null,
   //     // upVotes: null,
@@ -58,7 +59,7 @@ function AskQuestion(props) {
     questionTags: "",
     userPosted: "",
     askedOn: now,
-    userId: user,
+    userId: "user",
     answer: [
       {
         answerBody: "",
@@ -93,6 +94,7 @@ function AskQuestion(props) {
       questionTags: ques.questionTags,
       askedOn: ques.askedOn,
       userId: ques.userId,
+      userPosted: "manu",
     }),
   };
 
@@ -105,7 +107,7 @@ function AskQuestion(props) {
       .catch((error) => console.error(error));
     // props.onAdd(ques);
     console.log("a");
-    navigate("/home", { state: { flag: 1, name: user } });
+    navigate("/home" /*, { state: { flag: 1, name: user } }*/);
   };
 
   return (

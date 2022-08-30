@@ -28,20 +28,20 @@ const AllRoutes = () => {
     console.log(answers, id);
   };
 
-  const [user, setUser] = useState(null);
+  /*const [user, setUser] = useState("");
   const updateUser = (user) => {
     setUser(user);
   };
-  console.log(user);
+  console.log("user" + user);*/
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route path="/home" element={<Home user={user} />} />
+      <Route path="/home" element={<Home /*user={user} */ />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/Auth" element={<Auth getUser={updateUser} />} />
+      <Route path="/Auth" element={<Auth /*getUser={updateUser}*/ />} />
       <Route
         path="/Questions"
-        element={<Questions sendAnswers={updateAnswers} />}
+        element={<Questions /*sendAnswers={updateAnswers}*/ />}
       />
       <Route
         path="/AskQuestion"
