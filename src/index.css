@@ -1,16 +1,29 @@
-body {
+* {
+  padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  transition: all 0.5s;
+}
+html {
+  font-size: 100%;
+  color: #343a40;
   font-family: "Andika New Basic", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
   background-color: #eeeeee;
   background-image: url("../public/images/bg.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: "cover";
+  transition: all 0.5s;
+  /* overflow: hidden; */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+button {
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+::-webkit-scrollbar {
+  display: none;
 }

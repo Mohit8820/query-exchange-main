@@ -5,9 +5,12 @@ const QuestionList = ({ questionsList, filterval }) => {
     return (
       <>
         <p>{questionsList.length} questions</p>
-        {questionsList.map((question) => (
-          <Questions question={question} key={question._id} />
-        ))}
+        {questionsList
+          .slice(0)
+          .reverse()
+          .map((question) => (
+            <Questions question={question} key={question._id} />
+          ))}
       </>
     );
   } else {
@@ -18,9 +21,12 @@ const QuestionList = ({ questionsList, filterval }) => {
     return (
       <>
         <p>{output.length} questions</p>
-        {output.map((out) => (
-          <Questions question={out} key={out._id} />
-        ))}
+        {output
+          .slice(0)
+          .reverse()
+          .map((out) => (
+            <Questions question={out} key={out._id} />
+          ))}
       </>
     );
   }

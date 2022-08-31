@@ -29,25 +29,6 @@ nav {
   width: 3rem;
 }
 
-.nav-item {
-  margin: 0px 3px;
-  font-size: small;
-  font-weight: 500;
-  text-decoration: none;
-  color: rgb(69, 69, 69);
-  transition: 0.2s;
-}
-
-.nav-btn {
-  cursor: pointer;
-  border-radius: 20px;
-  padding: 10px 20px;
-}
-
-.nav-item:hover {
-  background-color: rgb(226, 226, 226);
-}
-
 .navbar form {
   flex-grow: 1;
   padding: 0px 12px;

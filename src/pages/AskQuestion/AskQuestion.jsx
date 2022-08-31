@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import getNow from "../../assets/getNow";
 import { useHttpClient } from "../../hooks/http-hook";
 import { AuthContext } from "../../contexts/auth-context";
 import ErrorModal from "../../components/UIElements/ErrorModal";
@@ -20,16 +21,6 @@ function AskQuestion(props) {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, "0");
-  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-  var yyyy = today.getFullYear();
-  var h = String(today.getHours()).padStart(2, "0");
-  var m = String(today.getMinutes()).padStart(2, "0"); //January is 0!
-  var s = String(today.getSeconds()).padStart(2, "0");
-
-  var now = yyyy + "-" + mm + "-" + dd + " " + h + ":" + m + ":" + s;
-
   const [ques, setques] = useState({
     upVotes: 0,
     downVotes: 0,
@@ -38,7 +29,7 @@ function AskQuestion(props) {
     questionBody: "",
     questionTags: "",
     userPosted: "",
-    askedOn: now,
+    //askedOn: getNow,
     userId: auth.userId,
     answer: [
       {
@@ -86,10 +77,13 @@ function AskQuestion(props) {
           questionTitle: ques.questionTitle,
           questionBody: ques.questionBody,
           questionTags: ques.questionTags,
-          askedOn: ques.askedOn,
+          askedOn: getNow(),
           userId: auth.userId,
         }),
-        { "Content-Type": "application/json" }
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        }
       );
       navigate("/home" /*, { state: { flag: 1, name: user } }*/); //add error handler
     } catch (err) {
@@ -109,10 +103,10 @@ function AskQuestion(props) {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <div className="ask-ques-container">
-        {isLoading && <LoadingSpinner asOverlay />}
         <h1>Ask a public Question</h1>
-        <form>
+        <form onSubmit={submitQues}>
           <div className="ask-form-container">
+            {isLoading && <LoadingSpinner asOverlay />}
             <label htmlFor="ask-ques-title">
               <h4>Title</h4>
               <p>
@@ -125,7 +119,7 @@ function AskQuestion(props) {
                 value={ques.questionTitle}
                 type="text"
                 placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-                required={true}
+                required
               />
             </label>
             <label htmlFor="ask-ques-body">
@@ -140,6 +134,7 @@ function AskQuestion(props) {
                 value={ques.questionBody}
                 cols="30"
                 rows="7"
+                required
               ></textarea>
             </label>
 
@@ -154,6 +149,7 @@ function AskQuestion(props) {
                   value={ques.questionTags}
                   label="program"
                   onChange={handleChange}
+                  required
                 >
                   <MenuItem value="b.tech">B.Tech</MenuItem>
                   <MenuItem value="m.tech">M.Tech</MenuItem>
@@ -177,7 +173,7 @@ function AskQuestion(props) {
                 placeholder="e.g. (xml typescript wordpress)"
               />
             </label> */}
-            <button onClick={submitQues} type="submit" className="submit-btn">
+            <button type="submit" className="submit-btn">
               Submit
             </button>
           </div>

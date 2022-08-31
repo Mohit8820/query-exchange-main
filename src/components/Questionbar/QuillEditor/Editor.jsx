@@ -45,7 +45,10 @@ export const Editor = (props) => {
         `http://localhost:4000/api/questions/${props.qid}`,
         "PATCH",
         JSON.stringify(ans),
-        { "Content-Type": "application/json" }
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        }
       );
       props.add();
     } catch (err) {}

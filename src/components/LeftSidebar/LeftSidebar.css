@@ -1,16 +1,54 @@
-.left-side {
-  margin-top: 5rem;
-  text-align: center;
+.left-panel {
+  width: 15rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 86vh;
+  transition: all 0.5s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 8px -2px #888;
+  border-radius: 0 0.5rem 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
-.toggle-buttons {
-  width: 10rem;
-  background: #fff;
+
+.ico {
+  width: 2rem;
 }
-.toggle-buttons button {
-  border: 0.1rem solid rgba(0, 0, 0, 0.197);
-  font-family: "Andika New Basic", sans-serif;
-  color: black;
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  list-style-type: none;
 }
-/* 
-.toggle-buttons button:hover {
-} */
+.nav-links li {
+  width: 12rem;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 4rem;
+  text-decoration: none;
+  color: #646fa7;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.nav-links a:hover,
+.nav-links a:active,
+.nav-links a.active {
+  color: #2b5bfc;
+  background-color: #ebeffd;
+}
+
+.left-panel p {
+  width: 8rem;
+}

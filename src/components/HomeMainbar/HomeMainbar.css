@@ -1,23 +1,19 @@
 .main-bar {
-  width: 50vw;
-  /* float: left; */
-  margin: 3.5rem 0px;
-  padding: 0;
+  width: 60vw;
 }
 
 .main-bar-header {
-  height: 3rem;
+  height: 4rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
 .heading {
   text-transform: uppercase;
-  border: 0.1rem solid rgb(0, 22, 44);
   padding: 0.1rem 0.8rem;
   border-radius: 0.5rem;
-  background-color: #07456c;
+  background-color: #39739d;
   color: white;
 }
 
@@ -25,9 +21,6 @@
   font-weight: 400;
 }
 
-.main-bar-header .ask-btn {
-  height: 3rem;
-}
 .display-questions {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

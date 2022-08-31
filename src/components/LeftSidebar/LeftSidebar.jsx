@@ -1,61 +1,106 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../../contexts/auth-context";
 import "./LeftSidebar.css";
-import { NavLink } from "react-router-dom";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-const LeftSidebar = (props) => {
-  const [view, setView] = React.useState("all");
+const LeftSidebar = () => {
+  const auth = useContext(AuthContext);
 
-  const handleChange = (event, nextView) => {
-    setView(nextView);
+  const navigate = useNavigate();
+
+  const toMyQuestions = () => {
+    navigate("/home", { state: auth.userId });
   };
 
-  function eventHandler(event) {
-    console.log(event.target.value);
-    var val = event.target.value;
-    props.onGet(val);
-  }
   return (
-    <div className="left-side">
-      <h2>Select program</h2>
+    <div className="left-panel">
+      {!auth.isLoggedIn && <p>Please Login or Sign-Up to ask questions.</p>}
 
-      <ToggleButtonGroup
-        color="primary"
-        orientation="vertical"
-        value={view}
-        exclusive
-        onChange={handleChange}
-        className="toggle-buttons"
-      >
-        <ToggleButton value="all" onClick={eventHandler}>
-          All
-        </ToggleButton>
-        <ToggleButton value="b.tech" onClick={eventHandler}>
-          B.Tech
-        </ToggleButton>
-        <ToggleButton value="m.tech" onClick={eventHandler}>
-          M.Tech
-        </ToggleButton>
-        <ToggleButton value="mca" onClick={eventHandler}>
-          MCA
-        </ToggleButton>
-        <ToggleButton value="bca" onClick={eventHandler}>
-          BCA
-        </ToggleButton>
-        <ToggleButton value="diploma" onClick={eventHandler}>
-          Diploma
-        </ToggleButton>
-        <ToggleButton value="b.com" onClick={eventHandler}>
-          B.Com
-        </ToggleButton>
-        <ToggleButton value="m.com" onClick={eventHandler}>
-          M.Com
-        </ToggleButton>
-        <ToggleButton value="bba" onClick={eventHandler}>
-          BBA
-        </ToggleButton>
-      </ToggleButtonGroup>
+      <ul className="nav-links">
+        <li>
+          <NavLink to="/home">
+            <svg
+              width="24"
+              height="24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              className="ico"
+            >
+              <path d="M15.996 23.999h-12.605s.734-3.931.633-5.686c-.041-.724-.161-1.474-.54-2.104-.645-1-2.636-3.72-2.475-7.43.224-5.209 4.693-8.779 10.126-8.779 5.098 0 8.507 3.001 9.858 7.483.328 1.079.311 1.541-.151 2.607l-.006.013 1.751 2.142c.26.381.413.791.413 1.239 0 .547-.233 1.045-.61 1.399-.368.345-.767.452-1.248.642 0 0-.576 2.592-.873 3.291-.7 1.643-1.97 1.659-2.97 1.849-.394.083-.49.133-.681.681-.208.591-.363 1.435-.622 2.653m-4.842-22c-4.285.048-7.74 2.548-8.121 6.488-.192 1.991.463 3.986 1.516 5.705.611 1 1.305 1.592 1.464 3.875.091 1.313-.05 2.636-.241 3.932h8.604c.141-.645.35-1.485.687-2.057.449-.766 1.097-1.099 1.926-1.254.838-.148 1.238-.059 1.489-.785.212-.579.612-2.221.831-3.902 1.203-.335.612-.161 1.671-.559-.206-.234-1.918-2.314-2.045-2.6-.336-.759-.046-1.19.225-1.913.086-.251.06-.357-.009-.613-1.049-3.949-3.891-6.317-7.997-6.317m.52 3c.242.684.312 1.122.841 1.341h.001c.53.221.893-.044 1.543-.353l.953.952c-.312.655-.573 1.016-.354 1.544v.001c.219.528.653.597 1.342.841v1.347c-.681.243-1.123.313-1.342.843-.22.529.043.891.354 1.544l-.953.952c-.657-.313-1.014-.574-1.541-.355h-.001c-.531.222-.601.661-.843 1.343h-1.348c-.242-.684-.312-1.122-.841-1.34l-.001-.001c-.529-.221-.892.043-1.544.353l-.952-.952c.305-.643.574-1.011.353-1.545-.22-.529-.661-.599-1.341-.842v-1.347c.681-.242 1.121-.312 1.341-.841.22-.531-.042-.891-.353-1.545l.952-.952c.657.312 1.015.573 1.544.353h.001c.529-.219.599-.661.841-1.341h1.348zm-.674 6.667c-.92 0-1.667-.746-1.667-1.667s.747-1.667 1.667-1.667 1.666.746 1.666 1.667-.746 1.667-1.666 1.667" />
+            </svg>
+            <span>Questions</span>
+          </NavLink>
+        </li>
+
+        {auth.isLoggedIn && (
+          <li>
+            <a onClick={toMyQuestions}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="ico"
+              >
+                <path d="M9.815 15.392l-1.644 3.515-1.371-.639 1.521-3.253c-.682-.122-1.311-.404-1.846-.812l-3.475 7.453 3.687-1.342 1.339 3.686 3.738-8.018c-.69-.037-1.35-.238-1.949-.59zm5.88-.382l1.501 3.251-1.353.645-1.639-3.526c-.592.354-1.253.559-1.945.601l3.741 8.019 1.34-3.683 3.66 1.345-3.46-7.472c-.534.41-1.162.695-1.845.82zm3.231-9.288c-.482 1.41-.484 1.139 0 2.555.05.147.074.297.074.445 0 .449-.222.883-.615 1.156-1.256.87-1.09.651-1.562 2.067-.198.591-.77.99-1.415.99h-.003c-1.549-.005-1.28-.088-2.528.789-.262.184-.569.276-.877.276s-.615-.092-.876-.275c-1.249-.878-.98-.794-2.528-.789h-.004c-.645 0-1.216-.399-1.413-.99-.473-1.417-.311-1.198-1.562-2.067-.395-.274-.617-.708-.617-1.157 0-.148.024-.298.074-.444.483-1.411.484-1.139 0-2.555-.05-.147-.074-.297-.074-.445 0-.45.222-.883.616-1.157 1.251-.868 1.089-.648 1.562-2.067.197-.591.769-.99 1.413-.99h.004c1.545.005 1.271.095 2.528-.79.262-.183.569-.274.877-.274s.615.091.876.274c1.248.878.98.795 2.528.79h.003c.646 0 1.217.399 1.415.99.473 1.416.307 1.197 1.562 2.067.394.273.616.707.616 1.156 0 .148-.024.299-.074.445zm-1.926 1.278c0-2.761-2.238-5-5-5s-5 2.239-5 5 2.238 5 5 5 5-2.24 5-5zm-5-3c1.653 0 2.999 1.346 2.999 3s-1.346 3-2.999 3c-1.654 0-3-1.346-3-3s1.346-3 3-3zm0-1c-2.209 0-4 1.791-4 4s1.791 4 4 4c2.208 0 3.999-1.791 3.999-4s-1.791-4-3.999-4z" />
+              </svg>
+              <span>My Questions</span>
+            </a>
+          </li>
+        )}
+        {auth.isLoggedIn && (
+          <li>
+            <NavLink to="/AskQuestion">
+              <svg
+                strokeLinejoin="round"
+                strokeMiterlimit="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                className="ico"
+              >
+                <path d="m21 4c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-16.5.5h15v15h-15zm13.5 10.75c0-.414-.336-.75-.75-.75h-4.5c-.414 0-.75.336-.75.75s.336.75.75.75h4.5c.414 0 .75-.336.75-.75zm-11.772-.537 1.25 1.114c.13.116.293.173.455.173.185 0 .37-.075.504-.222l2.116-2.313c.12-.131.179-.296.179-.459 0-.375-.303-.682-.684-.682-.185 0-.368.074-.504.221l-1.66 1.815-.746-.665c-.131-.116-.293-.173-.455-.173-.379 0-.683.307-.683.682 0 .188.077.374.228.509zm11.772-2.711c0-.414-.336-.75-.75-.75h-4.5c-.414 0-.75.336-.75.75s.336.75.75.75h4.5c.414 0 .75-.336.75-.75zm-11.772-1.613 1.25 1.114c.13.116.293.173.455.173.185 0 .37-.074.504-.221l2.116-2.313c.12-.131.179-.296.179-.46 0-.374-.303-.682-.684-.682-.185 0-.368.074-.504.221l-1.66 1.815-.746-.664c-.131-.116-.293-.173-.455-.173-.379 0-.683.306-.683.682 0 .187.077.374.228.509zm11.772-1.639c0-.414-.336-.75-.75-.75h-4.5c-.414 0-.75.336-.75.75s.336.75.75.75h4.5c.414 0 .75-.336.75-.75z" />
+              </svg>
+              <span>AskQuestion</span>
+            </NavLink>
+          </li>
+        )}
+        <li>
+          <NavLink to="/users">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6 ico"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+              />
+            </svg>
+            <span>Users</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact">
+            <svg
+              width="24"
+              height="24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              className="ico"
+            >
+              <path d="M8.26 1.289l-1.564.772c-5.793 3.02 2.798 20.944 9.31 20.944.46 0 .904-.094 1.317-.284l1.542-.755-2.898-5.594-1.54.754c-.181.087-.384.134-.597.134-2.561 0-6.841-8.204-4.241-9.596l1.546-.763-2.875-5.612zm7.746 22.711c-5.68 0-12.221-11.114-12.221-17.832 0-2.419.833-4.146 2.457-4.992l2.382-1.176 3.857 7.347-2.437 1.201c-1.439.772 2.409 8.424 3.956 7.68l2.399-1.179 3.816 7.36s-2.36 1.162-2.476 1.215c-.547.251-1.129.376-1.733.376" />
+            </svg>
+            <span>Contact</span>
+          </NavLink>
+        </li>
+      </ul>
     </div>
   );
 };

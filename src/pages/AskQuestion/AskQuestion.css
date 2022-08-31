@@ -1,11 +1,11 @@
 .ask-ques-container {
   margin: auto;
-  max-width: 80vw;
-  min-height: 90vh;
+  width: 100%;
+  padding: 4rem;
 }
 
 .ask-ques-container h1 {
-  padding: 50px 0px 7px 0px;
+  padding-bottom: 1rem;
 }
 
 .ask-ques-container form .ask-form-container {
@@ -19,6 +19,7 @@
 
 .ask-form-container {
   position: relative;
+  overflow: hidden;
 }
 
 .ask-form-container label h4 {
@@ -44,6 +45,14 @@
   position: absolute !important;
   bottom: 1.5rem;
   right: 20%;
-  /* height: 3rem; */
-  font-size: 1.2rem !important;
+  border: none;
+  background-color: #1976d2;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  color: aliceblue;
+  box-shadow: 0px 2px 6px 0px #888;
+}
+.submit-btn:active {
+  box-shadow: none;
 }

@@ -1,0 +1,36 @@
+.users-container {
+  width: 100%;
+}
+
+.users-list {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  gap: 2rem;
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.user-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0.1rem solid #3366bf;
+  width: 20rem;
+  background-color: aliceblue;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  box-shadow: 3px 3px 5px #00000033;
+}
+.user-item:hover {
+  border: 0.3rem solid #009dff;
+}
+.user-item:active {
+  border: 0.1rem solid #3366bf;
+  box-shadow: none;
+}

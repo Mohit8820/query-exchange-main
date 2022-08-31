@@ -26,59 +26,55 @@ const Navbar = () => {
         <Link to="/" className="nav-item nav-logo">
           <img src={logo} alt="logo" className="logo" />
         </Link>
-        <Link to="/home" className="nav-item nav-btn">
-          Questions
-        </Link>
-        <Link to="/contact" className="nav-item nav-btn">
-          Contact
-        </Link>
-        <form>
+        {/* <form>
           <input type="text" placeholder="Search..." />
           <img src={search} alt="search" width="18" className="search-icon" />
-        </form>
-        {!auth.isLoggedIn ? (
-          <>
-            <Button
-              variant="text"
-              onClick={() => {
-                tologin();
-              }}
-            >
-              Log in
-            </Button>
-            <Button
-              variant="contained"
-              onClick={() => {
-                tosignin();
-              }}
-            >
-              Sign Up
-            </Button>
-          </>
-        ) : (
-          <>
-            <Avatar
-              backgroundColor="#009dff"
-              px="10px"
-              py="7px"
-              borderRadius="50%"
-              color="white"
-            >
-              <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                R
-              </Link>
-            </Avatar>
-            <button
-              className="nav-item nav-links"
-              onClick={() => {
-                navigate("/home");
-                auth.logout();
-              }}
-            >
-              Log Out
-            </button>
-          </>
-        )}
+        </form> */}
+        <div className="auth-buttons">
+          {!auth.isLoggedIn ? (
+            <>
+              <Button
+                variant="text"
+                onClick={() => {
+                  tologin();
+                }}
+              >
+                Log in
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  tosignin();
+                }}
+              >
+                Sign Up
+              </Button>
+            </>
+          ) : (
+            <>
+              <Avatar
+                backgroundColor="#009dff"
+                px="10px"
+                py="7px"
+                borderRadius="50%"
+                color="white"
+              >
+                <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+                  R
+                </Link>
+              </Avatar>
+              <button
+                className="nav-item nav-links"
+                onClick={() => {
+                  navigate("/home");
+                  auth.logout();
+                }}
+              >
+                Log Out
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );

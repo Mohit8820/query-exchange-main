@@ -1,24 +1,19 @@
 import React, { useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { AuthContext } from "../../contexts/auth-context";
 import "./HomeMainbar.css";
 import QuestionList from "./QuestionList";
-import Button from "@mui/material/Button";
 
 const HomeMainbar = (props) => {
-  /*const user = props.user;*/
-  const auth = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const checkAuth = () => {
+  /*const checkAuth = () => {
     if (!auth.isLoggedIn) {
       alert("login or signup to ask a question");
       navigate("/Auth");
     } else {
-      navigate("/AskQuestion" /*, { state: user }*/);
+      navigate("/AskQuestion" );
     }
   };
+  */
 
   return (
     <div className="main-bar">
@@ -28,13 +23,10 @@ const HomeMainbar = (props) => {
         ) : ( */}
         <h1 className="heading">{props.filter} questions</h1>
         {/* )} */}
-        <Button variant="contained" onClick={checkAuth} className="ask-btn">
-          Ask Question
-        </Button>
       </div>
       <div className="display-questions">
         {props.questions.length === 0 ? (
-          <h1>Loading...</h1>
+          <h1>No Questions Found</h1>
         ) : (
           <>
             <QuestionList
