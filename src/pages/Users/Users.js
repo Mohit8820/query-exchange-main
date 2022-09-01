@@ -35,6 +35,7 @@ export const Users = () => {
       <ErrorModal error={error} onClear={clearError} />
 
       <div className="users-container">
+        <h1 className="users-head heading">Users</h1>
         <p>{usersList.length} Users</p>
 
         <div className="users-list">
@@ -43,9 +44,9 @@ export const Users = () => {
             <React.Fragment key={i}>
               <div className="user-item" onClick={() => showQuestions(user.id)}>
                 <Avatar
-                  backgroundColor="#009dff"
-                  px="1rem"
-                  py="0.4rem"
+                  backgroundColor="#1976d2"
+                  width="3rem"
+                  height="3rem"
                   borderRadius="50%"
                   color="white"
                   fontSize="1.8rem"

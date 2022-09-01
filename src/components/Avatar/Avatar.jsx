@@ -3,8 +3,8 @@ import React from "react";
 const Avatar = ({
   children,
   backgroundColor,
-  px,
-  py,
+  width,
+  height,
   color,
   borderRadius,
   fontSize,
@@ -12,7 +12,11 @@ const Avatar = ({
 }) => {
   const style = {
     backgroundColor,
-    padding: `${py} ${px}`,
+    width,
+    height,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     color: color || "black",
     borderRadius,
     fontSize,

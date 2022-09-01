@@ -16,11 +16,8 @@ const Questions = (props) => {
       {/* <div className="display-votes-ans">
         <p>{question.upVotes - question.downVotes}</p>
         <p>votes</p>
-      </div>
-      <div className="display-votes-ans">
-        <p>{question.noOfAnswers}</p>
-        <p>answers</p>
-      </div> */}
+      </div>*/}
+
       <div className="display-question-details">
         <p className="question-title-link" onClick={toQuestions}>
           {question.questionTitle}
@@ -29,12 +26,22 @@ const Questions = (props) => {
           {question.questionTitle}
         </Link> */}
         <div className="display-tags-time">
-          <div className="display-tags">
-            <p>{question.questionTags}</p>
+          <div className="user-tags">
+            <div className="display-tags">
+              <p>{question.questionTags}</p>
+            </div>
+            <div className="display-votes-ans">
+              <p>{question.answers.length} answers</p>
+            </div>
           </div>
-          <p className="display-time">
-            asked {moment(question.askedOn).fromNow()}
-          </p>
+          <div className="user-tags">
+            <div className="display-tags">
+              <p>{question.userPosted}</p>
+            </div>
+            <p className="display-time">
+              asked {moment(question.askedOn).fromNow()}
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import EditorToolbar, { modules, formats } from "./EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import "./styles.css";
 
+import getNow from "../../../assets/getNow";
 import { useHttpClient } from "../../../hooks/http-hook";
 import { AuthContext } from "../../../contexts/auth-context";
 import ErrorModal from "../../UIElements/ErrorModal";
@@ -13,30 +14,11 @@ export const Editor = (props) => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-  const [ans, setAns] = useState({
-    //try to remove it and send asked on to backend
-    answerBody: "",
-    //     //     //   answeredOn: "jan 2",
-    userId: auth.userId,
-  });
-  const [state, setState] = useState({ value: null });
+  const [ans, setAns] = useState("");
 
   function handleChange(value) {
-    setState({ value });
-
-    setAns((prevAns) => {
-      return {
-        ...prevAns,
-        answerBody: value,
-      };
-    });
+    setAns(value);
   }
-
-  /*const postAnswer = {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(ans),
-  };*/
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -44,7 +26,11 @@ export const Editor = (props) => {
       await sendRequest(
         `http://localhost:4000/api/questions/${props.qid}`,
         "PATCH",
-        JSON.stringify(ans),
+        JSON.stringify({
+          answerBody: ans,
+          answeredOn: getNow(),
+          userId: auth.userId,
+        }),
         {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
@@ -53,18 +39,7 @@ export const Editor = (props) => {
       props.add();
     } catch (err) {}
 
-    /* fetch(
-      ,
-      postAnswer
-    )
-      .then((response) => response.json())
-      .then((text) => {
-        console.log(text);
-        props.add();
-      })
-      .catch((error) => console.error(error));*/
-
-    setState({ value: null });
+    setAns("");
   };
   return (
     <React.Fragment>
@@ -77,14 +52,19 @@ export const Editor = (props) => {
           <EditorToolbar />
           <ReactQuill
             theme="snow"
-            value={state.value}
+            value={ans}
             onChange={handleChange}
             placeholder={"Write something awesome..."}
             modules={modules}
             formats={formats}
           />
         </div>
-        <button type="submit" onClick={handleClick} className="addButton">
+        <button
+          type="submit"
+          onClick={handleClick}
+          className="filled-btn addButton"
+          disabled={ans === "" || ans === "<p><br></p>" ? true : false}
+        >
           Submit
         </button>
       </div>

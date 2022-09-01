@@ -1,7 +1,11 @@
 .users-container {
   width: 100%;
 }
-
+.users-head {
+  width: 10rem;
+  text-align: center;
+  margin: 1rem auto;
+}
 .users-list {
   width: 90%;
   margin: auto;
@@ -11,7 +15,7 @@
   justify-content: center;
   justify-items: center;
   gap: 2rem;
-  height: 80vh;
+  height: 75vh;
   overflow-y: scroll;
 }
 
@@ -20,7 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 0.1rem solid #3366bf;
+  border: 0.1rem solid #1976d2;
   width: 20rem;
   background-color: aliceblue;
   padding: 1rem;
@@ -28,9 +32,9 @@
   box-shadow: 3px 3px 5px #00000033;
 }
 .user-item:hover {
-  border: 0.3rem solid #009dff;
+  border: 0.3rem solid #1976d2;
 }
 .user-item:active {
-  border: 0.1rem solid #3366bf;
+  border: 0.1rem solid #1976d2;
   box-shadow: none;
 }

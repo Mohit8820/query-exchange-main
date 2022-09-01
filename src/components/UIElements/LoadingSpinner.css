@@ -2,6 +2,7 @@
   display: inline-block;
   width: 64px;
   height: 64px;
+  z-index: 99999999;
 }
 
 .lds-dual-ring:after {
@@ -26,6 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99999999;
 }
 
 @keyframes lds-dual-ring {

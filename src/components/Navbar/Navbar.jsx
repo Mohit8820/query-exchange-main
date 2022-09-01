@@ -1,15 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import SideDrawer from "./SideDrawer";
+import Backdrop from "../UIElements/Backdrop";
+import LeftSidebar from "../LeftSidebar/LeftSidebar";
 import { AuthContext } from "../../contexts/auth-context";
+// import { useHttpClient } from "../../hooks/http-hook";
+// import ErrorModal from "../../components/UIElements/ErrorModal";
+// import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
 import logo from "../../assets/icon.jpg";
-import search from "../../assets/search-solid.svg";
-import Avatar from "../Avatar/Avatar";
+// import Avatar from "../Avatar/Avatar";
 import "./Navbar.css";
-import Button from "@mui/material/Button";
 
 const Navbar = () => {
   const auth = useContext(AuthContext);
+  // const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const navigate = useNavigate();
 
@@ -20,63 +25,115 @@ const Navbar = () => {
     navigate("/Auth", { state: "true" });
   };
 
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+
+  const openDrawerHandler = () => {
+    setDrawerIsOpen(true);
+  };
+
+  const closeDrawerHandler = () => {
+    setDrawerIsOpen(false);
+  };
+
+  // const [uname, setUname] = useState("");
+  // const getUser = useCallback(async () => {
+  //   try {
+  //     const responseData = await sendRequest(
+  //       `http://localhost:4000/api/users/${auth.userId}`
+  //     );
+
+  //     setUname(responseData.user.name);
+  //   } catch (err) {}
+  // }, []);
+
+  // useEffect(() => {
+  //   if (auth.isLoggedIn) {
+  //     getUser();
+  //   }
+  //   return;
+  // }, [auth.isLoggedIn]);
+
+  // console.log(uname);
+
   return (
-    <nav>
-      <div className="navbar">
-        <Link to="/" className="nav-item nav-logo">
-          <img src={logo} alt="logo" className="logo" />
-        </Link>
-        {/* <form>
+    // <React.Fragment>
+    //   <ErrorModal error={error} onClear={clearError} />
+
+    <React.Fragment>
+      {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}
+      <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
+        <nav className="main-navigation__drawer-nav">
+          <LeftSidebar />
+        </nav>
+      </SideDrawer>
+      <nav>
+        <div className="navbar">
+          <Link to="/" className="nav-item nav-logo">
+            <img src={logo} alt="logo" className="logo" />
+          </Link>
+          <button
+            className="main-navigation__menu-btn"
+            onClick={openDrawerHandler}
+          >
+            <span />
+            <span />
+            abc
+            <span />
+          </button>
+          {/* <form>
           <input type="text" placeholder="Search..." />
           <img src={search} alt="search" width="18" className="search-icon" />
         </form> */}
-        <div className="auth-buttons">
-          {!auth.isLoggedIn ? (
-            <>
-              <Button
-                variant="text"
-                onClick={() => {
-                  tologin();
-                }}
-              >
-                Log in
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  tosignin();
-                }}
-              >
-                Sign Up
-              </Button>
-            </>
-          ) : (
-            <>
-              <Avatar
-                backgroundColor="#009dff"
-                px="10px"
-                py="7px"
-                borderRadius="50%"
-                color="white"
-              >
-                <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                  R
-                </Link>
-              </Avatar>
-              <button
-                className="nav-item nav-links"
-                onClick={() => {
-                  navigate("/home");
-                  auth.logout();
-                }}
-              >
-                Log Out
-              </button>
-            </>
-          )}
+          <div className="auth-buttons">
+            {!auth.isLoggedIn ? (
+              <>
+                <button
+                  className="text-btn"
+                  variant="text"
+                  onClick={() => {
+                    tologin();
+                  }}
+                >
+                  Log in
+                </button>
+                <button
+                  className="filled-btn"
+                  variant="contained"
+                  onClick={() => {
+                    tosignin();
+                  }}
+                >
+                  Sign Up
+                </button>
+              </>
+            ) : (
+              <div className="user-logout">
+                {/* {isLoading && <LoadingSpinner asOverlay />} */}
+                {/* <Avatar
+                  backgroundColor="#1976d2"
+                  px="0.8rem"
+                  py="0.1rem"
+                  borderRadius="50%"
+                  color="#fff"
+                  fontSize="1.8rem"
+                >
+                  {uname.slice(0, 1)}
+                </Avatar> */}
+                <button
+                  className="text-btn"
+                  onClick={() => {
+                    navigate("/home");
+                    auth.logout();
+                  }}
+                >
+                  Log Out
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </React.Fragment>
   );
 };
 

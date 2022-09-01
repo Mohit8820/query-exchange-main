@@ -4,13 +4,15 @@ const QuestionList = ({ questionsList, filterval }) => {
   if (filterval == "all") {
     return (
       <>
-        <p>{questionsList.length} questions</p>
-        {questionsList
-          .slice(0)
-          .reverse()
-          .map((question) => (
-            <Questions question={question} key={question._id} />
-          ))}
+        <p className="left-align">{questionsList.length} questions</p>
+        <div className="display-questions">
+          {questionsList
+            .slice(0)
+            .reverse()
+            .map((question) => (
+              <Questions question={question} key={question._id} />
+            ))}
+        </div>
       </>
     );
   } else {
@@ -20,13 +22,15 @@ const QuestionList = ({ questionsList, filterval }) => {
     console.log(output);
     return (
       <>
-        <p>{output.length} questions</p>
-        {output
-          .slice(0)
-          .reverse()
-          .map((out) => (
-            <Questions question={out} key={out._id} />
-          ))}
+        <p className="left-align">{output.length} questions</p>
+        <div className="display-questions">
+          {output
+            .slice(0)
+            .reverse()
+            .map((out) => (
+              <Questions question={out} key={out._id} />
+            ))}
+        </div>
       </>
     );
   }

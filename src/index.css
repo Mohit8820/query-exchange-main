@@ -1,3 +1,11 @@
+.abc {
+  color: #1976d2; /*clicks*/
+  color: #39739d; /*heads*/
+  color: #07456c; /*text main*/
+  color: #757575; /*text fade*/
+  background-color: aliceblue;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -13,17 +21,47 @@ html {
   background-image: url("../public/images/bg.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: "cover";
+  background-size: cover;
+  filter: hue-rotate(0.57);
   transition: all 0.5s;
   /* overflow: hidden; */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
 button {
+  background: none;
   border: none;
   cursor: pointer;
   font-family: "Poppins", sans-serif;
 }
 ::-webkit-scrollbar {
   display: none;
+}
+
+.text-btn {
+  color: #1976d2;
+  font-size: 1.2rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.3rem;
+}
+.text-btn:hover {
+  background-color: #eeeeee;
+}
+.filled-btn {
+  border: none;
+  background-color: #1976d2;
+  font-size: 1.2rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.3rem;
+  color: aliceblue;
+  box-shadow: 0px 2px 6px 0px #888;
+}
+.filled-btn:active {
+  box-shadow: none;
+}
+.delete-btn {
+  background: none;
+}
+.delete-btn svg {
+  fill: #757575 !important;
 }

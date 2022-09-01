@@ -159,7 +159,7 @@ const Auth = (props) => {
               )} */}
             </div>
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               onChange={handleChange}
@@ -178,17 +178,13 @@ const Auth = (props) => {
             )}
           </label>
 
-          <button type="submit" className="auth-btn">
+          <button type="submit" className="filled-btn">
             {isSignup ? "Sign up" : "Log in"}
           </button>
         </form>
         <p>
           {isSignup ? "Already have an account?" : "Don't have an account?"}
-          <button
-            type="button"
-            className="handle-switch-btn"
-            onClick={handleSwitch}
-          >
+          <button type="button" className="text-btn" onClick={handleSwitch}>
             {isSignup ? "Log in" : "sign up"}
           </button>
         </p>

@@ -1,11 +1,9 @@
 .text-editor {
-  /* width: 500px; */
   margin: 0 auto;
   background-color: aliceblue;
+  position: relative;
 }
 .ql-editor {
-  min-height: 100px;
-}
-.addButton {
-  margin-top: 2rem;
+  height: 5.5rem;
+  overflow: scroll;
 }

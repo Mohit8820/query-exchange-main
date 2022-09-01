@@ -24,7 +24,6 @@ const Questionsbar = (props) => {
       );
 
       setAnswers(responseData.question.answers);
-      console.log(answers);
     } catch (err) {}
   };
 
@@ -62,12 +61,6 @@ const Questionsbar = (props) => {
     } catch (err) {}
   };
 
-  /* function addAns(value) {
-    setAnswers((prevAnswers) => {
-      return [...prevAnswers, value];
-    });
-  }*/
-  //
   return (
     <React.Fragment>
       <Modal
@@ -76,8 +69,12 @@ const Questionsbar = (props) => {
         header="delete request"
         footer={
           <div>
-            <button onClick={() => setDeleteQues(false)}>Cancel</button>
-            <button onClick={deleteQuestion}>Okay</button>
+            <button onClick={() => setDeleteQues(false)} className="text-btn">
+              Cancel
+            </button>
+            <button onClick={deleteQuestion} className="filled-btn">
+              Okay
+            </button>
           </div>
         }
       >
@@ -89,8 +86,12 @@ const Questionsbar = (props) => {
         header="delete request"
         footer={
           <div>
-            <button onClick={() => setDeleteAns(false)}>Cancel</button>
-            <button onClick={deleteAnswer}>Okay</button>
+            <button onClick={() => setDeleteAns(false)} className="text-btn">
+              Cancel
+            </button>
+            <button onClick={deleteAnswer} className="filled-btn">
+              Okay
+            </button>
           </div>
         }
       >
@@ -98,58 +99,92 @@ const Questionsbar = (props) => {
       </Modal>
 
       <ErrorModal error={error} onClear={clearError} />
-      {isLoading && <LoadingSpinner asOverlay />}
+
       <div className="question-bar">
-        <div className="display-ques">
-          <h3>{question.questionTitle}</h3>
-          <p>{question.questionBody}</p>
-          <div className="display-tags-time">
-            <div className="display-tags">
-              <p>{question.questionTags}</p>
-            </div>
-            <p className="display-time">
-              asked {moment(question.askedOn).fromNow()}
-            </p>
-          </div>
-          {auth.userId === question.userId && (
-            <button onClick={() => setDeleteQues(true)}>delete</button>
-          )}
-        </div>
-
-        {/* <div>
-        <p>{question.upVotes - question.downVotes}</p>
-        <p>votes</p>
-      </div>
-      <div className="display-votes-ans">
-        <p>{question.noOfAnswers}</p>
-        <p>answers</p> 
-      </div>*/}
-
-        <div className="answers">
-          <h3>Answers</h3>
-          <hr></hr>
-          {answers.map((answer, index) => {
-            return (
-              <React.Fragment key={index}>
-                <span>{answer.id}</span>
-                <span>{answer.userAnswered}</span>
-                {auth.userId === answer.userId && (
-                  <button
-                    onClick={() => {
-                      setAnswerId(answer.id);
-                      setDeleteAns(true);
-                    }}
+        <div className="scrollable">
+          <div className="display-ques">
+            <div>
+              <h3>{question.questionTitle}</h3>
+              {auth.userId === question.userId && (
+                <button
+                  className="delete-btn"
+                  onClick={() => setDeleteQues(true)}
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    delete
-                  </button>
-                )}
-                <div dangerouslySetInnerHTML={{ __html: answer.answerBody }} />
-                <hr></hr>
-              </React.Fragment>
-            );
-          })}
-        </div>
+                    <path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z" />
+                  </svg>
+                </button>
+              )}
+            </div>
+            <p className="ques-body">{question.questionBody}</p>
+            <div className="display-tags-time">
+              <div className="user-tags">
+                <div className="display-tags">
+                  <p>{question.questionTags}</p>
+                </div>
+              </div>
+              <div className="user-tags">
+                <div className="display-tags">
+                  <p>{question.userPosted}</p>
+                </div>
+                <p className="display-time">
+                  asked {moment(question.askedOn).fromNow()}
+                </p>
+              </div>
+            </div>
+          </div>
 
+          <div className="answers">
+            {isLoading && <LoadingSpinner asOverlay />}
+            <h3>Answers</h3>
+            <hr></hr>
+            {answers
+              .slice(0)
+              .reverse()
+              .map((answer, index) => {
+                return (
+                  <React.Fragment key={index}>
+                    <div className="ans-item">
+                      <div
+                        dangerouslySetInnerHTML={{ __html: answer.answerBody }}
+                      />
+                      <div className="ans-flex">
+                        <div className="display-tags">
+                          <p>{answer.userAnswered}</p>
+                        </div>
+                        <p className="display-time">
+                          asked {moment(answer.answeredOn).fromNow()}
+                        </p>
+                        {(auth.userId === answer.userId ||
+                          auth.userId === question.userId) && (
+                          <button
+                            className="delete-btn"
+                            onClick={() => {
+                              setAnswerId(answer.id);
+                              setDeleteAns(true);
+                            }}
+                          >
+                            <svg
+                              width="24"
+                              height="24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z" />
+                            </svg>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                    <hr></hr>
+                  </React.Fragment>
+                );
+              })}
+          </div>
+        </div>
         <Editor add={getAnswer} qid={question._id} />
       </div>
     </React.Fragment>

@@ -1,5 +1,5 @@
 nav {
-  min-height: 50px;
+  height: 8vh;
   width: 100%;
   margin: 0% auto;
   border-top: solid 3px ef8236;
@@ -53,4 +53,12 @@ nav {
 .authbuttons {
   padding: 7px 13px;
   text-decoration: none;
+}
+
+.user-logout {
+  display: flex;
+  border: 0.1rem #0000003e solid;
+  border-radius: 10rem 2rem 2rem 10rem;
+  position: relative;
+  overflow: hidden;
 }

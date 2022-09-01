@@ -33,7 +33,6 @@
 .nav-links a {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
   width: 100%;
   height: 4rem;
@@ -45,10 +44,14 @@
 .nav-links a:hover,
 .nav-links a:active,
 .nav-links a.active {
-  color: #2b5bfc;
+  color: #1976d2;
   background-color: #ebeffd;
 }
 
+.disabled {
+  color: #646fa73a;
+  pointer-events: none;
+}
 .left-panel p {
   width: 8rem;
 }
