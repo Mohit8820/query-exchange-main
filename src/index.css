@@ -147,12 +147,11 @@ button {
   #contact {
     margin-top: 30% !important;
   }
-}
-@media (max-width: 400px) {
   html {
     font-size: 80%;
   }
 }
+
 @media (max-height: 525px) {
   .display-questions {
     height: 60vh !important;

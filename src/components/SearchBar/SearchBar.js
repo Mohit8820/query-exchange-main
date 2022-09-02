@@ -33,7 +33,7 @@ function SearchBar(props) {
 
   return (
     <div className="search tooltip">
-      <span class="tooltiptext">
+      <span className="tooltiptext">
         Enter question title/description/user name/program
       </span>
       <div className="searchInputs">

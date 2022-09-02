@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   margin: 8vh auto 0;
+  position: relative;
 }
 
 .home-container {
@@ -24,4 +25,11 @@ main {
   background: white;
   box-shadow: 1px 1px 8px -2px #888;
   border-radius: 0 0.5rem 0.5rem 0;
+}
+.center {
+  height: 80vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

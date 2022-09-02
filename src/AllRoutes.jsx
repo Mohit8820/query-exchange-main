@@ -31,7 +31,7 @@ const AllRoutes = () => {
         <Route path="/AskQuestion" element={<AskQuestion />} />
         <Route path="/Questions" element={<Questions />} />
         <Route path="/users" element={<Users />} />
-        <Route path="*" element={<Navigate replace to="/" />} />
+        <Route path="*" element={<Navigate replace to="/home" />} />
       </Routes>
     );
   } else {
@@ -50,7 +50,15 @@ const AllRoutes = () => {
 
   return (
     <React.Fragment>
-      <Suspense fallback={<LoadingSpinner />}>{routes}</Suspense>
+      <Suspense
+        fallback={
+          <div className="center">
+            <LoadingSpinner />
+          </div>
+        }
+      >
+        {routes}
+      </Suspense>
     </React.Fragment>
   );
 };
