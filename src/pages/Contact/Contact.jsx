@@ -1,14 +1,6 @@
 import React from "react";
 import Paper from "@mui/material/Paper";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import MailIcon from "@mui/icons-material/Mail";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import CallIcon from "@mui/icons-material/Call";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import "./Contact.css";
-import icon from "../../assets/icon.jpg";
 
 function Contact() {
   return (

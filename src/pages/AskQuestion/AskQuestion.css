@@ -1,7 +1,6 @@
 .ask-ques-container {
-  margin: auto;
-  width: 100%;
-  padding: 4rem;
+  margin: 5vh auto 0;
+  width: 80%;
 }
 
 .ask-ques-container h1 {
@@ -9,7 +8,7 @@
 }
 
 .ask-ques-container form .ask-form-container {
-  padding: 20px;
+  padding: 1.8rem;
   box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%),
     0 1px 4px rgb(0 0 0 / 10%);
   border: #037ecb 0.001rem solid;
@@ -28,23 +27,28 @@
 
 .ask-form-container label p {
   margin: 0%;
-  font-size: 13px;
-  padding: 3px 0px;
+  font-size: 1rem;
+  padding: 0.1rem 0;
 }
 
 .ask-form-container label input,
 .ask-form-container label textarea {
-  padding: 10px;
-  border: solid 1px #0000003e;
+  font-size: 0.9rem;
+  padding: 0.8rem;
+  border: solid 0.08rem #0000003e;
   font-family: "Roboto", sans-serif;
-  width: calc(100% - 20px);
+  width: calc(100% - 1.2rem);
   resize: vertical;
+}
+textarea {
+  height: 10vh;
 }
 
 .submit-btn {
   position: absolute !important;
-  bottom: 1.5rem;
-  right: 20%;
+  bottom: 0;
+  right: 50%;
+  transform: translate(50%, -10%);
   border: none;
   background-color: #1976d2;
   font-size: 1.2rem;

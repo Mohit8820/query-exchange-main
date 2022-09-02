@@ -23,14 +23,17 @@ function LandingPageButton() {
 function LandingFrameMessage() {
   const style = {
     margin: "auto",
-    padding: "10% 35% 0% 15%",
-    color: "Black",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    color: "#39739d",
+    height: "100%",
   };
   return (
     <div style={style}>
-      <div style={{ fontSize: "96px" }}>Hey!! Doubts?</div>
+      <div style={{ fontSize: "8rem" }}>Hey!! Doubts?</div>
 
-      <div style={{ fontSize: "36px" }}>
+      <div style={{ fontSize: "2rem" }}>
         Click on get started...ask your queries and your fellow mates and
         teachers will answer them.
       </div>
@@ -48,17 +51,9 @@ function LandingFrame() {
   //   height: "100%",
   //   width: "100%",
   // };
-  return (
-    <div>
-      <LandingFrameMessage />
-    </div>
-  );
+  return <LandingFrameMessage />;
 }
 function Landing() {
-  return (
-    <div>
-      <LandingFrame />
-    </div>
-  );
+  return <LandingFrame />;
 }
 export default Landing;

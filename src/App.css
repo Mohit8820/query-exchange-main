@@ -19,3 +19,9 @@ main {
   position: relative;
   height: 100%;
 }
+.left-panel-container {
+  width: 13rem;
+  background: white;
+  box-shadow: 1px 1px 8px -2px #888;
+  border-radius: 0 0.5rem 0.5rem 0;
+}

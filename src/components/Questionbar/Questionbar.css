@@ -4,7 +4,7 @@
   color: #07456c;
 }
 .scrollable {
-  height: 55vh;
+  height: 75vh;
   overflow-y: scroll;
 }
 .display-ques {
@@ -17,6 +17,7 @@
 }
 .display-ques div:first-of-type {
   display: flex;
+  gap: 1rem;
   justify-content: space-between;
 }
 .ques-body {
@@ -43,4 +44,9 @@
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
+}
+.ans-btn {
+  left: 50%;
+  transform: translate(-50%, 10%);
+  position: absolute;
 }

@@ -2,8 +2,31 @@
   margin: 0 auto;
   background-color: aliceblue;
   position: relative;
+  text-align: left;
 }
 .ql-editor {
-  height: 5.5rem;
+  height: 20vh;
   overflow: scroll;
+  font-size: 1rem;
+  padding: 0.8rem;
+}
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button,
+.ql-snow .ql-color-picker .ql-picker-label svg,
+.ql-snow .ql-icon-picker .ql-picker-label svg {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+.ql-snow .ql-picker {
+  font-size: 1rem;
+  height: 1.7rem;
+  width: 5.4rem !important;
+}
+.ql-toolbar.ql-snow {
+  padding: 0.2rem;
+}
+.ql-align.ql-picker.ql-icon-picker,
+.ql-color.ql-picker.ql-color-picker,
+.ql-background.ql-picker.ql-color-picker {
+  width: 2rem !important;
 }

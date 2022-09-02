@@ -16,7 +16,7 @@ const RightSidebar = (props) => {
     props.onGet(val);
   }
   return (
-    <div className="right-side">
+    <div className="right-side pc-view">
       <h2>Select program</h2>
 
       <ToggleButtonGroup

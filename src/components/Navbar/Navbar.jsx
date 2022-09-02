@@ -62,24 +62,32 @@ const Navbar = () => {
     <React.Fragment>
       {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}
       <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
-        <nav className="main-navigation__drawer-nav">
-          <LeftSidebar />
-        </nav>
+        <LeftSidebar />
       </SideDrawer>
       <nav>
         <div className="navbar">
+          <button
+            className="main-navigation__menu-btn mobile-view"
+            onClick={openDrawerHandler}
+          >
+            <svg
+              clipRule="evenodd"
+              fillRule="evenodd"
+              strokeLinejoin="round"
+              strokeMiterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#1976d2"
+            >
+              <path
+                d="m13 16.745c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75zm9-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm-4-5c0-.414-.336-.75-.75-.75h-14.5c-.414 0-.75.336-.75.75s.336.75.75.75h14.5c.414 0 .75-.336.75-.75z"
+                fillRule="nonzero"
+              />
+            </svg>
+          </button>
           <Link to="/" className="nav-item nav-logo">
             <img src={logo} alt="logo" className="logo" />
           </Link>
-          <button
-            className="main-navigation__menu-btn"
-            onClick={openDrawerHandler}
-          >
-            <span />
-            <span />
-            abc
-            <span />
-          </button>
           {/* <form>
           <input type="text" placeholder="Search..." />
           <img src={search} alt="search" width="18" className="search-icon" />
@@ -120,7 +128,7 @@ const Navbar = () => {
                   {uname.slice(0, 1)}
                 </Avatar> */}
                 <button
-                  className="text-btn"
+                  className="filled-btn"
                   onClick={() => {
                     navigate("/home");
                     auth.logout();

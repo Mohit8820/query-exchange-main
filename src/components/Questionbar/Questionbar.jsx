@@ -43,14 +43,18 @@ const Questionsbar = (props) => {
       navigate("/home");
     } catch (err) {}
   };
-  const [answerId, setAnswerId] = useState("");
+  const [answerInfo, setAnswerInfo] = useState({
+    answer_id: "",
+    answeredBy: "",
+  });
   const [deleteAns, setDeleteAns] = useState(false);
+  const [ansBtn, setAnsBtn] = useState(false);
 
   const deleteAnswer = async () => {
     setDeleteAns(false);
     try {
       await sendRequest(
-        `http://localhost:4000/api/questions/delete?question_id=${question.id}&answer_id=${answerId}`,
+        `http://localhost:4000/api/questions/delete?question_id=${question.id}&answer_id=${answerInfo.answer_id}&answeredBy=${answerInfo.answeredBy}`,
         "DELETE",
         null,
         {
@@ -97,6 +101,18 @@ const Questionsbar = (props) => {
       >
         Do you want to delete the answer
       </Modal>
+      <Modal
+        onCancel={() => setAnsBtn(false)}
+        show={ansBtn}
+        header="Your answer"
+        footerClass="display-none"
+      >
+        <Editor
+          add={getAnswer}
+          qid={question._id}
+          gotAnswer={() => setAnsBtn(false)}
+        />
+      </Modal>
 
       <ErrorModal error={error} onClear={clearError} />
 
@@ -105,7 +121,8 @@ const Questionsbar = (props) => {
           <div className="display-ques">
             <div>
               <h3>{question.questionTitle}</h3>
-              {auth.userId === question.userId && (
+              {(auth.userId === question.userId ||
+                auth.userId === "630f42be2f1ad3455ab123cc") && (
                 <button
                   className="delete-btn"
                   onClick={() => setDeleteQues(true)}
@@ -113,9 +130,10 @@ const Questionsbar = (props) => {
                   <svg
                     width="24"
                     height="24"
+                    viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z" />
+                    <path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2m3-19h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-12-2h4v-1h-4v1z" />
                   </svg>
                 </button>
               )}
@@ -157,23 +175,28 @@ const Questionsbar = (props) => {
                           <p>{answer.userAnswered}</p>
                         </div>
                         <p className="display-time">
-                          asked {moment(answer.answeredOn).fromNow()}
+                          answered {moment(answer.answeredOn).fromNow()}
                         </p>
                         {(auth.userId === answer.userId ||
-                          auth.userId === question.userId) && (
+                          auth.userId === question.userId ||
+                          auth.userId === "630f42be2f1ad3455ab123cc") && (
                           <button
                             className="delete-btn"
                             onClick={() => {
-                              setAnswerId(answer.id);
+                              setAnswerInfo({
+                                answer_id: answer.id,
+                                answeredBy: answer.userId,
+                              });
                               setDeleteAns(true);
                             }}
                           >
                             <svg
                               width="24"
                               height="24"
+                              viewBox="0 0 24 24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
-                              <path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z" />
+                              <path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z" />{" "}
                             </svg>
                           </button>
                         )}
@@ -185,7 +208,9 @@ const Questionsbar = (props) => {
               })}
           </div>
         </div>
-        <Editor add={getAnswer} qid={question._id} />
+        <button className="filled-btn ans-btn" onClick={() => setAnsBtn(true)}>
+          Answer
+        </button>
       </div>
     </React.Fragment>
   );

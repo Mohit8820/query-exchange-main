@@ -1,7 +1,7 @@
 import React from "react";
 import Questions from "./Questions";
 const QuestionList = ({ questionsList, filterval }) => {
-  if (filterval == "all") {
+  if (filterval === "all") {
     return (
       <>
         <p className="left-align">{questionsList.length} questions</p>
@@ -17,7 +17,7 @@ const QuestionList = ({ questionsList, filterval }) => {
     );
   } else {
     var output = questionsList.filter(
-      (question) => question.questionTags == filterval
+      (question) => question.questionTags === filterval
     );
     console.log(output);
     return (

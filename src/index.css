@@ -64,4 +64,90 @@ button {
 }
 .delete-btn svg {
   fill: #757575 !important;
+  width: 1.5rem;
+  height: auto;
+}
+.css-gqssyb {
+  margin-top: 0.5rem;
+}
+
+.css-jlajbz-MuiFormControl-root {
+  border-radius: 0.4rem;
+}
+
+.main-bar
+  .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0.8rem !important;
+}
+
+.mobile-view {
+  display: none;
+}
+@media (max-width: 1080px) {
+  html {
+    font-size: 85%;
+  }
+  .scrollable {
+    height: 50vh;
+  }
+}
+@media (max-width: 940px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media (max-width: 765px) {
+  .pc-view {
+    display: none !important;
+  }
+  .main-bar,
+  .ask-ques-container,
+  .question-bar {
+    width: 100% !important;
+  }
+  .mobile-view {
+    display: block !important;
+  }
+  main {
+    margin-left: 0 !important;
+  }
+  .main-bar-header {
+    flex-direction: column;
+  }
+  .filter-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    gap: 1rem;
+  }
+  .search {
+    width: 100% !important;
+  }
+  .searchInputs {
+    width: 100% !important;
+  }
+  .display-questions {
+    height: 65vh !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .users-list {
+    grid-template-columns: 1fr !important;
+  }
+  textarea {
+    height: 20vh !important;
+  }
+  #contact {
+    margin-top: 30% !important;
+  }
+}
+@media (max-height: 525px) {
+  .display-questions {
+    height: 60vh !important;
+  }
 }

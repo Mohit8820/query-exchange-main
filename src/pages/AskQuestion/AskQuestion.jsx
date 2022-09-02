@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import getNow from "../../assets/getNow";
 import { useHttpClient } from "../../hooks/http-hook";
@@ -14,10 +14,6 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 function AskQuestion(props) {
-  /*const location = useLocation();
-  const user = location.state;
-  console.log(user);*/
-
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -53,19 +49,6 @@ function AskQuestion(props) {
 
   const navigate = useNavigate();
 
-  /* const postRequest = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      questionTitle: ques.questionTitle,
-      questionBody: ques.questionBody,
-      questionTags: ques.questionTags,
-      askedOn: ques.askedOn,
-      userId: ques.userId,
-      userPosted: "manu",
-    }),
-  };
-*/
   const submitQues = async (event) => {
     event.preventDefault();
     console.group(auth.userId);
@@ -85,18 +68,8 @@ function AskQuestion(props) {
           Authorization: "Bearer " + auth.token,
         }
       );
-      navigate("/home" /*, { state: { flag: 1, name: user } }*/); //add error handler
-    } catch (err) {
-      //redirect to diff page
-    }
-
-    /*fetch("http://localhost:4000/api/questions/", postRequest)
-      .then((response) => response.json())
-      .then((text) => {
-        console.log(text);
-      })
-      .catch((error) => console.error(error));
-    console.log("a");*/
+      navigate("/home");
+    } catch (err) {}
   };
 
   return (
@@ -139,7 +112,7 @@ function AskQuestion(props) {
             </label>
 
             <h4>Program</h4>
-            <Box sx={{ minWidth: 200 }}>
+            <Box sx={{ minWidth: 200, marginBottom: "2.5rem" }}>
               <FormControl sx={{ minWidth: 200, backgroundColor: "white" }}>
                 <InputLabel id="demo-simple-select-label">Program</InputLabel>
                 <Select

@@ -24,7 +24,9 @@ function App() {
         <Router>
           <Navbar />
           <div className="main">
-            <LeftSidebar />
+            <div className="pc-view left-panel-container">
+              <LeftSidebar />
+            </div>
             <main>
               <AllRoutes />
             </main>

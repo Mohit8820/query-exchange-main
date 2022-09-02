@@ -29,6 +29,9 @@
 .modal__footer {
   padding: 1rem 0.5rem;
 }
+.display-none {
+  display: none;
+}
 
 @media (min-width: 768px) {
   .modal {

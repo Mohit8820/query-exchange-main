@@ -75,7 +75,7 @@ const Auth = (props) => {
   };
 
   useEffect(() => {
-    if (location.state == "false") setIsSignup(false);
+    if (location.state === "false") setIsSignup(false);
     else setIsSignup(true);
     console.log(isSignup);
   }, [location.state]);
@@ -130,6 +130,7 @@ const Auth = (props) => {
                 name="name"
                 onChange={handleChange}
                 value={user.name}
+                maxLength="6"
                 required
               />
             </label>
@@ -143,6 +144,7 @@ const Auth = (props) => {
               id="email"
               onChange={handleChange}
               value={user.email}
+              onClick={() => setValidEmail(null)}
               //onBlur={validateEmail}
               required
             />
@@ -171,9 +173,8 @@ const Auth = (props) => {
             {validPassword && <span>{validPassword}</span>}
             {isSignup && (
               <p style={{ color: "#666767", fontSize: "13px" }}>
-                Passwords must contain at least six
-                <br />
-                characters, including at least 1 letter and 1<br /> number.
+                Passwords must contain at least six characters, including at
+                least 1 letter and 1 number.
               </p>
             )}
           </label>

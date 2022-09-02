@@ -14,7 +14,7 @@ const LeftSidebar = () => {
   };
 
   return (
-    <div className="left-panel">
+    <div className="left-panel ">
       {!auth.isLoggedIn && <p>Please Login or Sign-Up to ask questions.</p>}
 
       <ul className="nav-links">
@@ -23,6 +23,7 @@ const LeftSidebar = () => {
             <svg
               width="24"
               height="24"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               className="ico"
