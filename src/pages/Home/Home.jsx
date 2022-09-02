@@ -17,9 +17,9 @@ const Home = (props) => {
   useEffect(() => {
     let url;
     if (location.state) {
-      url = `http://localhost:4000/api/questions//user/${location.state}`;
+      url = `${process.env.REACT_APP_API_URL}/questions/user/${location.state}`;
     } else {
-      url = "http://localhost:4000/api/questions/";
+      url = process.env.REACT_APP_API_URL + "/questions/";
     }
 
     const getQuestions = async () => {

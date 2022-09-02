@@ -20,7 +20,7 @@ const Questionsbar = (props) => {
   const getAnswer = async () => {
     try {
       const responseData = await sendRequest(
-        `http://localhost:4000/api/questions/${question.id}`
+        `${process.env.REACT_APP_API_URL}/questions/${question.id}`
       );
 
       setAnswers(responseData.question.answers);
@@ -33,7 +33,7 @@ const Questionsbar = (props) => {
     setDeleteQues(false);
     try {
       await sendRequest(
-        `http://localhost:4000/api/questions/${question.id}`,
+        `${process.env.REACT_APP_API_URL}/questions/${question.id}`,
         "DELETE",
         null,
         {
@@ -54,7 +54,7 @@ const Questionsbar = (props) => {
     setDeleteAns(false);
     try {
       await sendRequest(
-        `http://localhost:4000/api/questions/delete?question_id=${question.id}&answer_id=${answerInfo.answer_id}&answeredBy=${answerInfo.answeredBy}`,
+        `${process.env.REACT_APP_API_URL}/questions/delete?question_id=${question.id}&answer_id=${answerInfo.answer_id}&answeredBy=${answerInfo.answeredBy}`,
         "DELETE",
         null,
         {
@@ -168,6 +168,7 @@ const Questionsbar = (props) => {
                   <React.Fragment key={index}>
                     <div className="ans-item">
                       <div
+                        className="answer-body"
                         dangerouslySetInnerHTML={{ __html: answer.answerBody }}
                       />
                       <div className="ans-flex">

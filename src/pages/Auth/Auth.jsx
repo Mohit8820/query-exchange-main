@@ -55,7 +55,7 @@ const Auth = (props) => {
 
     try {
       const responseData = await sendRequest(
-        "http://localhost:4000/api/users/" + method,
+        process.env.REACT_APP_API_URL + "/users/" + method,
         "POST",
         JSON.stringify(body),
         { "Content-Type": "application/json" }

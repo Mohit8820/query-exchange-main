@@ -27,7 +27,7 @@ export const Editor = (props) => {
     if (auth.isLoggedIn) {
       try {
         await sendRequest(
-          `http://localhost:4000/api/questions/${props.qid}`,
+          `${process.env.REACT_APP_API_URL}/questions/${props.qid}`,
           "PATCH",
           JSON.stringify({
             answerBody: ans,

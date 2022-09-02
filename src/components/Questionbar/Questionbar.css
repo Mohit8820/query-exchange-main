@@ -50,3 +50,6 @@
   transform: translate(-50%, 10%);
   position: absolute;
 }
+.answer-body {
+  padding-bottom: 1rem;
+}

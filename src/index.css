@@ -68,18 +68,20 @@ button {
   height: auto;
 }
 .css-gqssyb {
-  margin-top: 0.5rem;
+  margin-top: 0.5rem !important;
 }
 
 .css-jlajbz-MuiFormControl-root {
-  border-radius: 0.4rem;
+  border-radius: 0.4rem !important;
 }
 
 .main-bar
   .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 0.8rem !important;
 }
-
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  min-height: 1px !important;
+}
 .mobile-view {
   display: none;
 }

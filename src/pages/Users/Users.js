@@ -15,7 +15,7 @@ export const Users = () => {
     const getUsers = async () => {
       try {
         const responseData = await sendRequest(
-          "http://localhost:4000/api/users/"
+          process.env.REACT_APP_API_URL + "/users"
         );
 
         setUsersList(responseData.users);

@@ -54,7 +54,7 @@ function AskQuestion(props) {
     console.group(auth.userId);
     try {
       await sendRequest(
-        "http://localhost:4000/api/questions/",
+        process.env.REACT_APP_API_URL + "/questions/",
         "POST",
         JSON.stringify({
           questionTitle: ques.questionTitle,
