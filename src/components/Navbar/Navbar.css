@@ -55,10 +55,14 @@ nav {
   text-decoration: none;
 }
 
-.user-logout {
+/* .user-logout {
   display: flex;
   border: 0.1rem #0000003e solid;
   border-radius: 10rem 2rem 2rem 10rem;
   position: relative;
   overflow: hidden;
+} */
+.main-navigation__menu-btn {
+  width: 3rem;
+  height: auto;
 }

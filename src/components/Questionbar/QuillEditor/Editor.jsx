@@ -9,8 +9,10 @@ import { useHttpClient } from "../../../hooks/http-hook";
 import { AuthContext } from "../../../contexts/auth-context";
 import ErrorModal from "../../UIElements/ErrorModal";
 import LoadingSpinner from "../../UIElements/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 export const Editor = (props) => {
+  const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -22,24 +24,26 @@ export const Editor = (props) => {
 
   const handleClick = async (event) => {
     event.preventDefault();
-    try {
-      await sendRequest(
-        `http://localhost:4000/api/questions/${props.qid}`,
-        "PATCH",
-        JSON.stringify({
-          answerBody: ans,
-          answeredOn: getNow(),
-          userId: auth.userId,
-        }),
-        {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        }
-      );
-      props.add();
-    } catch (err) {}
+    if (auth.isLoggedIn) {
+      try {
+        await sendRequest(
+          `http://localhost:4000/api/questions/${props.qid}`,
+          "PATCH",
+          JSON.stringify({
+            answerBody: ans,
+            answeredOn: getNow(),
+            userId: auth.userId,
+          }),
+          {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          }
+        );
+        props.add();
+      } catch (err) {}
 
-    setAns("");
+      setAns("");
+    } else navigate("/Auth");
   };
   return (
     <React.Fragment>

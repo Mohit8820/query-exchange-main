@@ -157,7 +157,7 @@ const Questionsbar = (props) => {
                           <p>{answer.userAnswered}</p>
                         </div>
                         <p className="display-time">
-                          asked {moment(answer.answeredOn).fromNow()}
+                          answered {moment(answer.answeredOn).fromNow()}
                         </p>
                         {(auth.userId === answer.userId ||
                           auth.userId === question.userId) && (
