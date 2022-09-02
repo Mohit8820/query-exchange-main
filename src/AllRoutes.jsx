@@ -31,7 +31,7 @@ const AllRoutes = () => {
         <Route path="/AskQuestion" element={<AskQuestion />} />
         <Route path="/Questions" element={<Questions />} />
         <Route path="/users" element={<Users />} />
-        <Route path="*" element={<Navigate replace to="/home" />} />
+        <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     );
   } else {
@@ -43,7 +43,7 @@ const AllRoutes = () => {
         <Route path="/Auth" element={<Auth />} />
         <Route path="/Questions" element={<Questions />} />
         <Route path="/users" element={<Users />} />
-        <Route path="*" element={<Navigate replace to="/Auth" />} />
+        <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     );
   }

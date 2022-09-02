@@ -67,7 +67,7 @@ button {
   width: 1.5rem;
   height: auto;
 }
-.css-gqssyb {
+/* .css-gqssyb {
   margin-top: 0.5rem !important;
 }
 
@@ -81,7 +81,7 @@ button {
 }
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
   min-height: 1px !important;
-}
+} */
 .mobile-view {
   display: none;
 }
@@ -146,6 +146,11 @@ button {
   }
   #contact {
     margin-top: 30% !important;
+  }
+}
+@media (max-width: 400px) {
+  html {
+    font-size: 80%;
   }
 }
 @media (max-height: 525px) {
