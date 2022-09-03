@@ -172,9 +172,10 @@ const Auth = (props) => {
             />
             {validPassword && <span>{validPassword}</span>}
             {isSignup && (
-              <p style={{ color: "#666767", fontSize: "13px" }}>
+              <p style={{ color: "#666767", fontSize: "0.8rem" }}>
                 Passwords must contain at least six characters, including at
-                least 1 letter and 1 number.
+                least 1 uppercase and lowercase alphabet , 1 number and 1
+                symbol.
               </p>
             )}
           </label>

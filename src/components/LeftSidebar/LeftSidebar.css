@@ -49,7 +49,7 @@
 }
 
 .disabled {
-  color: #646fa73a;
+  color: #646fa74f !important;
   pointer-events: none;
 }
 .left-panel p {

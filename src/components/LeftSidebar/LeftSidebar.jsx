@@ -54,10 +54,7 @@ const LeftSidebar = () => {
         </li>
 
         <li>
-          <NavLink
-            to="/AskQuestion"
-            className={`${auth.isLoggedIn ? "" : "disabled"}`}
-          >
+          <NavLink to={`${auth.isLoggedIn ? "/AskQuestion" : "/Auth"}`}>
             <svg
               strokeLinejoin="round"
               strokeMiterlimit="2"
