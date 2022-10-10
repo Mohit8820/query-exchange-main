@@ -1,5 +1,12 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import EditorToolbar, {
+  modules,
+  formats,
+} from "../../components/Questionbar/QuillEditor/EditorToolbar";
+import "../../components/Questionbar/QuillEditor/styles.css";
 
 import getNow from "../../assets/getNow";
 import { useHttpClient } from "../../hooks/http-hook";
@@ -46,6 +53,15 @@ function AskQuestion(props) {
       };
     });
   }
+  function handleChangeinBody(value) {
+    setques((prevQues) => {
+      return {
+        ...prevQues,
+        questionBody: value,
+      };
+    });
+    console.log(ques);
+  }
 
   const navigate = useNavigate();
 
@@ -76,7 +92,7 @@ function AskQuestion(props) {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <div className="ask-ques-container">
-        <h1>Ask a public Question</h1>
+        <h1>Ask a Question</h1>
         <form onSubmit={submitQues}>
           <div className="ask-form-container">
             {isLoading && <LoadingSpinner asOverlay />}
@@ -101,14 +117,27 @@ function AskQuestion(props) {
                 Include all the information someone would need to answer your
                 question
               </p>
-              <textarea
+              <div className="ques-body-editor">
+                <EditorToolbar />
+                <ReactQuill
+                  theme="snow"
+                  name="questionBody"
+                  onChange={handleChangeinBody}
+                  value={ques.questionBody}
+                  placeholder={"details"}
+                  modules={modules}
+                  formats={formats}
+                  required={true}
+                />
+              </div>
+              {/* <textarea
                 name="questionBody"
                 onChange={handleChange}
                 value={ques.questionBody}
                 cols="30"
                 rows="7"
                 required
-              ></textarea>
+              ></textarea> */}
             </label>
 
             <h4>Program</h4>
@@ -146,7 +175,15 @@ function AskQuestion(props) {
                 placeholder="e.g. (xml typescript wordpress)"
               />
             </label> */}
-            <button type="submit" className="submit-btn">
+            <button
+              type="submit"
+              className="submit-btn"
+              disabled={
+                ques.questionBody.replaceAll("<p><br></p>", "") === ""
+                  ? true
+                  : false
+              }
+            >
               Submit
             </button>
           </div>

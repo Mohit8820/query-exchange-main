@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import SideDrawer from "./SideDrawer";
@@ -85,7 +85,7 @@ const Navbar = () => {
               />
             </svg>
           </button>
-          <Link to="/" className="nav-item nav-logo">
+          <Link to="/" className="nav-item nav-logo pc-view ">
             <img src={logo} alt="logo" className="logo" />
           </Link>
           {/* <form>

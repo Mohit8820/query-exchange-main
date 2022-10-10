@@ -31,7 +31,7 @@ function LandingFrameMessage() {
   };
   return (
     <div style={style}>
-      <div style={{ fontSize: "8rem" }}>Hey!! Doubts?</div>
+      <div style={{ fontSize: "7rem" }}>Hey!! Doubts?</div>
 
       <div style={{ fontSize: "2rem" }}>
         Click on get started...ask your queries and your fellow mates and

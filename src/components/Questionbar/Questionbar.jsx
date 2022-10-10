@@ -138,7 +138,11 @@ const Questionsbar = (props) => {
                 </button>
               )}
             </div>
-            <p className="ques-body">{question.questionBody}</p>
+            <div
+              className="ques-body"
+              dangerouslySetInnerHTML={{ __html: question.questionBody }}
+            />
+            {/* <p className="ques-body">{question.questionBody}</p> */}
             <div className="display-tags-time">
               <div className="user-tags">
                 <div className="display-tags">

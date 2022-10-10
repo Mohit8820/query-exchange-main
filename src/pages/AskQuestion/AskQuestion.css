@@ -8,7 +8,7 @@
 }
 
 .ask-ques-container form .ask-form-container {
-  padding: 1.8rem;
+  padding: 0.2rem 1.6rem 2rem;
   box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%),
     0 1px 4px rgb(0 0 0 / 10%);
   border: #037ecb 0.001rem solid;
@@ -21,8 +21,9 @@
   overflow: hidden;
 }
 
-.ask-form-container label h4 {
+.ask-form-container h4 {
   margin-bottom: 0%;
+  margin-top: 0.6rem;
 }
 
 .ask-form-container label p {
@@ -40,9 +41,16 @@
   width: calc(100% - 1.2rem);
   resize: vertical;
 }
-textarea {
-  height: 10vh;
+
+.ques-body-editor {
+  background-color: white;
 }
+.ques-body-editor .ql-editor {
+  height: 15vh;
+}
+/* textarea {
+  height: 10vh;
+} */
 
 .submit-btn {
   position: absolute !important;

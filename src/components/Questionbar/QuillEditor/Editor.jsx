@@ -68,7 +68,7 @@ export const Editor = (props) => {
           type="submit"
           onClick={handleClick}
           className="filled-btn addButton"
-          disabled={ans === "" || ans === "<p><br></p>" ? true : false}
+          disabled={ans.replaceAll("<p><br></p>", "") === "" ? true : false}
         >
           Submit
         </button>
