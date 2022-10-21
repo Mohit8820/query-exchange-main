@@ -9,6 +9,8 @@ import ErrorModal from "../../components/UIElements/ErrorModal";
 import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
 import Editor from "./QuillEditor/Editor";
 import "./Questionbar.css";
+import Answers from "./Answers";
+import Dropdown from "../Dropdown/Dropdown";
 
 const Questionsbar = (props) => {
   var question = props.question;
@@ -26,7 +28,7 @@ const Questionsbar = (props) => {
       setAnswers(responseData.question.answers);
     } catch (err) {}
   };
-
+  const [ansBtn, setAnsBtn] = useState(false);
   const [deleteQues, setDeleteQues] = useState(false);
 
   const deleteQuestion = async () => {
@@ -43,26 +45,85 @@ const Questionsbar = (props) => {
       navigate("/home");
     } catch (err) {}
   };
-  const [answerInfo, setAnswerInfo] = useState({
-    answer_id: "",
-    answeredBy: "",
-  });
-  const [deleteAns, setDeleteAns] = useState(false);
-  const [ansBtn, setAnsBtn] = useState(false);
 
-  const deleteAnswer = async () => {
-    setDeleteAns(false);
+  const [like, setLike] = useState(question.likes.length);
+  const [dislike, setDislike] = useState(question.dislikes.length);
+  const [likeactive, setlikeactive] = useState(
+    question.likes.includes(auth.userId)
+  );
+  const [dislikeactive, setdislikeactive] = useState(
+    question.dislikes.includes(auth.userId)
+  );
+
+  const votePatch = async (method) => {
     try {
       await sendRequest(
-        `${process.env.REACT_APP_API_URL}/questions/delete?question_id=${question.id}&answer_id=${answerInfo.answer_id}&answeredBy=${answerInfo.answeredBy}`,
-        "DELETE",
-        null,
+        `${process.env.REACT_APP_API_URL}/questions/${method}/${question.id}`,
+        "PATCH",
+        JSON.stringify({
+          userId: auth.userId,
+        }),
         {
+          "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
         }
       );
-      getAnswer();
     } catch (err) {}
+  };
+
+  function likef() {
+    if (likeactive) {
+      votePatch("unlike");
+      setlikeactive(false);
+      setLike(like - 1);
+    } else {
+      votePatch("like");
+      setlikeactive(true);
+      setLike(like + 1);
+      if (dislikeactive) {
+        votePatch("undoDislike");
+        setdislikeactive(false);
+        setLike(like + 1);
+        setDislike(dislike - 1);
+      }
+    }
+  }
+  function dislikef() {
+    if (dislikeactive) {
+      votePatch("undoDislike");
+      setdislikeactive(false);
+      setDislike(dislike - 1);
+    } else {
+      votePatch("dislike");
+      setdislikeactive(true);
+      setDislike(dislike + 1);
+      if (likeactive) {
+        votePatch("unlike");
+        setlikeactive(false);
+        setDislike(dislike + 1);
+        setLike(like - 1);
+      }
+    }
+  }
+
+  const [sort, setSort] = useState("upvotes");
+
+  const sortMethods = {
+    // none: { method: (a, b) => null },
+
+    latest: {
+      method: (a, b) => new Date(b.answeredOn) - new Date(a.answeredOn),
+    },
+    oldest: {
+      method: (a, b) => new Date(a.answeredOn) - new Date(b.answeredOn),
+    },
+
+    upvotes: {
+      method: (a, b) => (a.upvotes.length > b.upvotes.length ? -1 : 1),
+    },
+    downvotes: {
+      method: (a, b) => (a.downvotes.length > b.downvotes.length ? -1 : 1),
+    },
   };
 
   return (
@@ -84,23 +145,7 @@ const Questionsbar = (props) => {
       >
         Do you want to delete the question
       </Modal>
-      <Modal
-        onCancel={() => setDeleteAns(false)}
-        show={deleteAns}
-        header="delete request"
-        footer={
-          <div>
-            <button onClick={() => setDeleteAns(false)} className="text-btn">
-              Cancel
-            </button>
-            <button onClick={deleteAnswer} className="filled-btn">
-              Okay
-            </button>
-          </div>
-        }
-      >
-        Do you want to delete the answer
-      </Modal>
+
       <Modal
         onCancel={() => setAnsBtn(false)}
         show={ansBtn}
@@ -117,100 +162,135 @@ const Questionsbar = (props) => {
       <ErrorModal error={error} onClear={clearError} />
 
       <div className="question-bar">
-        <div className="scrollable">
-          <div className="display-ques">
-            <div>
-              <h3>{question.questionTitle}</h3>
-              {(auth.userId === question.userId ||
-                auth.userId === "630f42be2f1ad3455ab123cc") && (
-                <button
-                  className="delete-btn"
-                  onClick={() => setDeleteQues(true)}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2m3-19h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-12-2h4v-1h-4v1z" />
-                  </svg>
-                </button>
-              )}
-            </div>
-            <div
-              className="ques-body"
-              dangerouslySetInnerHTML={{ __html: question.questionBody }}
-            />
-            {/* <p className="ques-body">{question.questionBody}</p> */}
-            <div className="display-tags-time">
-              <div className="user-tags">
-                <div className="display-tags">
-                  <p>{question.questionTags}</p>
-                </div>
-              </div>
-              <div className="user-tags">
-                <div className="display-tags">
-                  <p>{question.userPosted}</p>
-                </div>
-                <p className="display-time">
-                  asked {moment(question.askedOn).fromNow()}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="answers">
+        <div className="ques-n-ans-container">
+          <div className="ques-bar-head">
             {isLoading && <LoadingSpinner asOverlay />}
-            <h3>Answers</h3>
-            <hr></hr>
-            {answers
-              .slice(0)
-              .reverse()
-              .map((answer, index) => {
-                return (
-                  <React.Fragment key={index}>
-                    <div className="ans-item">
-                      <div
-                        className="answer-body"
-                        dangerouslySetInnerHTML={{ __html: answer.answerBody }}
+            <div className="vote-btns">
+              <button onClick={likef} disabled={!auth.isLoggedIn}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2.7rem"
+                  height="2.5rem"
+                  viewBox="0 0 27 25"
+                  fill="none"
+                  className={`rotate ${likeactive ? "vote-btn" : ""}`}
+                >
+                  <path
+                    d="M13.5123 0.857178H18.7315C25.2018 0.857178 27.8602 5.39094 24.6153 10.9279L21.996 15.3845L19.3766 19.8411C16.1317 25.3781 10.8343 25.3781 7.58937 19.8411L4.96998 15.3845L2.3506 10.9279C-0.83566 5.39094 1.80327 0.857178 8.29308 0.857178H13.5123Z"
+                    stroke="black"
+                    stroke-opacity="0.5"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span> {like}</span>
+              </button>
+              <button onClick={dislikef} disabled={!auth.isLoggedIn}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2.7rem"
+                  height="2.5rem"
+                  viewBox="0 0 27 25"
+                  fill="none"
+                  className={` ${dislikeactive ? "vote-btn" : ""}`}
+                >
+                  <path
+                    d="M13.5123 0.857178H18.7315C25.2018 0.857178 27.8602 5.39094 24.6153 10.9279L21.996 15.3845L19.3766 19.8411C16.1317 25.3781 10.8343 25.3781 7.58937 19.8411L4.96998 15.3845L2.3506 10.9279C-0.83566 5.39094 1.80327 0.857178 8.29308 0.857178H13.5123Z"
+                    stroke="black"
+                    stroke-opacity="0.5"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span className="de-vote">{dislike}</span>
+              </button>
+            </div>
+            <h3>{question.questionTitle}</h3>
+          </div>
+          <div className="scrollable">
+            <div className="display-ques-details">
+              <div
+                className="ques-body"
+                dangerouslySetInnerHTML={{ __html: question.questionBody }}
+              />
+              <div className="display-tags-time">
+                <p>{question.questionTags}</p>
+                {/* <p>{question.answers.length} answers</p> */}
+                <div>
+                  <p>-{question.userPosted}</p>
+                  <p className="display-time">
+                    asked {moment(question.askedOn).fromNow()}
+                  </p>
+                  <div>
+                    {(auth.userId === question.userId ||
+                      auth.userId === "630f42be2f1ad3455ab123cc") && (
+                      <button
+                        className="delete-btn"
+                        onClick={() => setDeleteQues(true)}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="2rem"
+                          height="2.1rem"
+                          viewBox="0 0 20 21"
+                          fill="none"
+                        >
+                          <path
+                            d="M19 4.64042C15.67 4.337 12.32 4.1807 8.98 4.1807C7 4.1807 5.02 4.27264 3.04 4.45653L1 4.64042M6.5 3.71179L6.72 2.50734C6.88 1.63388 7 0.981079 8.69 0.981079H11.31C13 0.981079 13.13 1.67065 13.28 2.51653L13.5 3.71179M16.85 7.54582L16.2 16.8045C16.09 18.248 16 19.3697 13.21 19.3697H6.79C4 19.3697 3.91 18.248 3.8 16.8045L3.15 7.54582M8.33 14.3128H11.66M7.5 10.6351H12.5"
+                            stroke="black"
+                            stroke-opacity="0.5"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="answers-section">
+              <div className="filter-flex">
+                <span>{question.answers.length} answers</span>
+                <Dropdown
+                  selected={sort}
+                  setSelected={setSort}
+                  options={["latest", "oldest", "upvotes", "downvotes"]}
+                  icon={
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="2rem"
+                      height="1.2rem"
+                      viewBox="0 0 20 12"
+                      fill="none"
+                    >
+                      <path
+                        d="M1 1H19M4 6H16M8 11H12"
+                        stroke="black"
+                        strokeOpacity="0.5"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
                       />
-                      <div className="ans-flex">
-                        <div className="display-tags">
-                          <p>{answer.userAnswered}</p>
-                        </div>
-                        <p className="display-time">
-                          answered {moment(answer.answeredOn).fromNow()}
-                        </p>
-                        {(auth.userId === answer.userId ||
-                          auth.userId === question.userId ||
-                          auth.userId === "630f42be2f1ad3455ab123cc") && (
-                          <button
-                            className="delete-btn"
-                            onClick={() => {
-                              setAnswerInfo({
-                                answer_id: answer.id,
-                                answeredBy: answer.userId,
-                              });
-                              setDeleteAns(true);
-                            }}
-                          >
-                            <svg
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z" />{" "}
-                            </svg>
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                    <hr></hr>
-                  </React.Fragment>
+                    </svg>
+                  }
+                />
+              </div>
+              {answers.sort(sortMethods[sort].method).map((answer, index) => {
+                return (
+                  <Answers
+                    answer={answer}
+                    key={index}
+                    question={question}
+                    getAnswer={() => getAnswer()}
+                  />
                 );
               })}
+            </div>
           </div>
         </div>
         <button className="filled-btn ans-btn" onClick={() => setAnsBtn(true)}>

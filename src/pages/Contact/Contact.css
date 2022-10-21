@@ -1,41 +1,86 @@
-#contact {
-  padding: 3rem 0 0;
-  margin: 0 auto;
-  max-width: 30rem;
-}
+.contact-box-container {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  color: var(--grey-text);
 
-.cont {
+  width: 40rem;
+  margin: auto;
+}
+.contact-box {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 50vh;
+  align-items: flex-start;
+  justify-content: start;
+  flex-direction: column;
+  gap: 4rem;
+  height: 30rem;
+  padding: 4rem;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  background: linear-gradient(
+    0deg,
+    rgba(114, 179, 72, 0.3) -5.77%,
+    rgba(255, 255, 255, 0.19) 50%
+  );
+  border: #c8e1b8 0.2rem solid;
+  font-size: 1.4rem;
 }
 .icons {
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  width: 100%;
 }
 
-#contact svg {
-  width: 2.5rem;
+.contact-box svg {
+  width: 3.5rem;
   height: auto;
 }
 .icons svg {
-  width: 3rem !important;
+  width: 4.5rem !important;
   height: auto;
 }
-#contact p {
-  display: flex;
-  margin-top: 3%;
-  gap: 3%;
-  color: #343a40cb;
-  font-size: 1.2rem;
-  align-items: center;
+
+.git-icon,
+.fb-icon,
+.linkedin-icon,
+.insta-icon {
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
 }
+.git-icon {
+  animation-delay: 0.5s;
+}
+.linkedin-icon {
+  animation-delay: 1s;
+}
+.insta-icon {
+  animation-delay: 1.5s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.contact-box p {
+  display: flex;
+  gap: 3%;
+  align-items: center;
+  width: 100%;
+  padding-left: 2rem;
+}
+
 footer {
-  margin-top: 5%;
+  font-size: 1.4rem;
   text-align: center;
-  color: #adb5bd;
+  color: var(--grey-text);
   letter-spacing: 0.3rem;
 }

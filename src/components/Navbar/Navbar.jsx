@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import SideDrawer from "./SideDrawer";
@@ -8,14 +8,12 @@ import { AuthContext } from "../../contexts/auth-context";
 // import { useHttpClient } from "../../hooks/http-hook";
 // import ErrorModal from "../../components/UIElements/ErrorModal";
 // import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
-import logo from "../../assets/icon.jpg";
-// import Avatar from "../Avatar/Avatar";
+import Avatar from "avataaars";
 import "./Navbar.css";
 
 const Navbar = () => {
   const auth = useContext(AuthContext);
   // const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
   const navigate = useNavigate();
 
   const tologin = () => {
@@ -53,7 +51,21 @@ const Navbar = () => {
   //   return;
   // }, [auth.isLoggedIn]);
 
-  // console.log(uname);
+  const [userDetail, setDetail] = useState({
+    name: "",
+    avatar: {},
+  });
+
+  useEffect(() => {
+    if (auth.uavatar !== null)
+      setDetail((prev) => {
+        return { ...prev, avatar: { ...auth.uavatar } };
+      });
+    if (auth.uname !== null)
+      setDetail((prev) => {
+        return { ...prev, name: auth.uname };
+      });
+  }, [auth.uavatar, auth.uname]);
 
   return (
     // <React.Fragment>
@@ -77,7 +89,7 @@ const Navbar = () => {
               strokeMiterlimit="2"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
-              fill="#1976d2"
+              fill="#5d81cb"
             >
               <path
                 d="m13 16.745c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75zm9-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm-4-5c0-.414-.336-.75-.75-.75h-14.5c-.414 0-.75.336-.75.75s.336.75.75.75h14.5c.414 0 .75-.336.75-.75z"
@@ -86,7 +98,8 @@ const Navbar = () => {
             </svg>
           </button>
           <Link to="/" className="nav-item nav-logo pc-view ">
-            <img src={logo} alt="logo" className="logo" />
+            {/* <img src={logo} alt="logo" className="logo" />
+             */}
           </Link>
           {/* <form>
           <input type="text" placeholder="Search..." />
@@ -115,28 +128,49 @@ const Navbar = () => {
                 </button>
               </>
             ) : (
-              <div className="user-logout">
+              <button className="user-logout filled-btn">
                 {/* {isLoading && <LoadingSpinner asOverlay />} */}
-                {/* <Avatar
-                  backgroundColor="#1976d2"
-                  px="0.8rem"
-                  py="0.1rem"
-                  borderRadius="50%"
-                  color="#fff"
-                  fontSize="1.8rem"
+                <Avatar
+                  className="avatar-small"
+                  avatarStyle="Circle"
+                  {...userDetail.avatar}
+                />
+
+                {userDetail.name}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1rem"
+                  height="12"
+                  viewBox="0 0 23 14"
+                  fill="none"
                 >
-                  {uname.slice(0, 1)}
-                </Avatar> */}
-                <button
-                  className="filled-btn"
-                  onClick={() => {
-                    navigate("/home");
-                    auth.logout();
-                  }}
-                >
-                  Log Out
-                </button>
-              </div>
+                  <path
+                    d="M20.7622 2.35168L12.8805 11.1467C11.9497 12.1854 10.4265 12.1854 9.4957 11.1467L1.61401 2.35168"
+                    stroke="white"
+                    strokeWidth="3"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <div className="dropdown-user">
+                  <div
+                    onClick={() => {
+                      navigate("/home", { state: auth.userId });
+                    }}
+                  >
+                    My questions
+                  </div>
+                  <div
+                    onClick={() => {
+                      navigate("/home");
+                      auth.logout();
+                    }}
+                  >
+                    logout
+                  </div>
+                </div>
+              </button>
             )}
           </div>
         </div>

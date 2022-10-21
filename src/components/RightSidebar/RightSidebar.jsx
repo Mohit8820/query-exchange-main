@@ -1,7 +1,7 @@
 import React from "react";
 import "./RightSidebar.css";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+// import ToggleButton from "@mui/material/ToggleButton";
+// import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 const RightSidebar = (props) => {
   const [view, setView] = React.useState("all");
@@ -19,7 +19,7 @@ const RightSidebar = (props) => {
     <div className="right-side pc-view">
       <h2>Select program</h2>
 
-      <ToggleButtonGroup
+      {/* <ToggleButtonGroup
         color="primary"
         orientation="vertical"
         value={view}
@@ -54,7 +54,7 @@ const RightSidebar = (props) => {
         <ToggleButton value="bba" onClick={eventHandler}>
           BBA
         </ToggleButton>
-      </ToggleButtonGroup>
+      </ToggleButtonGroup> */}
     </div>
   );
 };

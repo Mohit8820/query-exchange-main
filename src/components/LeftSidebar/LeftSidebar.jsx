@@ -2,21 +2,21 @@ import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/auth-context";
+import logo from "../../assets/icon.jpg";
 import "./LeftSidebar.css";
 
 const LeftSidebar = () => {
   const auth = useContext(AuthContext);
 
-  const navigate = useNavigate();
+  /* const navigate = useNavigate();
 
   const toMyQuestions = () => {
     navigate("/home", { state: auth.userId });
-  };
+  };*/
 
   return (
     <div className="left-panel ">
-      {!auth.isLoggedIn && <p>Please Login or Sign-Up to ask questions.</p>}
-
+      <img src={logo} alt="logo" className="logo" />
       <ul className="nav-links">
         <li>
           <NavLink to="/home">
@@ -34,7 +34,7 @@ const LeftSidebar = () => {
           </NavLink>
         </li>
 
-        <li>
+        {/* <li>
           <a
             onClick={toMyQuestions}
             className={`${auth.isLoggedIn ? "" : "disabled"}`}
@@ -51,7 +51,7 @@ const LeftSidebar = () => {
             </svg>
             <span>My Questions</span>
           </a>
-        </li>
+        </li> */}
 
         <li>
           <NavLink to={`${auth.isLoggedIn ? "/AskQuestion" : "/Auth"}`}>
@@ -97,6 +97,8 @@ const LeftSidebar = () => {
           </NavLink>
         </li>
       </ul>
+
+      {!auth.isLoggedIn && <p>Please Login or Sign-Up to ask questions.</p>}
     </div>
   );
 };

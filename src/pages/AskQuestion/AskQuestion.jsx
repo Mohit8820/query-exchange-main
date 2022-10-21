@@ -14,11 +14,7 @@ import { AuthContext } from "../../contexts/auth-context";
 import ErrorModal from "../../components/UIElements/ErrorModal";
 import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
 import "./AskQuestion.css";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import Dropdown from "../../components/Dropdown/Dropdown";
 
 function AskQuestion(props) {
   const auth = useContext(AuthContext);
@@ -50,6 +46,14 @@ function AskQuestion(props) {
       return {
         ...prevQues,
         [name]: value,
+      };
+    });
+  }
+  function handleTagChange(value) {
+    setques((prevQues) => {
+      return {
+        ...prevQues,
+        questionTags: value,
       };
     });
   }
@@ -91,8 +95,9 @@ function AskQuestion(props) {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
+
+      <h1 className="heading">Ask a Question</h1>
       <div className="ask-ques-container">
-        <h1>Ask a Question</h1>
         <form onSubmit={submitQues}>
           <div className="ask-form-container">
             {isLoading && <LoadingSpinner asOverlay />}
@@ -141,29 +146,23 @@ function AskQuestion(props) {
             </label>
 
             <h4>Program</h4>
-            <Box sx={{ minWidth: 200, marginBottom: "2.5rem" }}>
-              <FormControl sx={{ minWidth: 200, backgroundColor: "white" }}>
-                <InputLabel id="demo-simple-select-label">Program</InputLabel>
-                <Select
-                  name="questionTags"
-                  labelId="questionTags-label"
-                  id="questionTags"
-                  value={ques.questionTags}
-                  label="program"
-                  onChange={handleChange}
-                  required
-                >
-                  <MenuItem value="b.tech">B.Tech</MenuItem>
-                  <MenuItem value="m.tech">M.Tech</MenuItem>
-                  <MenuItem value="mca">MCA</MenuItem>
-                  <MenuItem value="bca">BCA</MenuItem>
-                  <MenuItem value="diploma">Diploma</MenuItem>
-                  <MenuItem value="b.com">B.Com</MenuItem>
-                  <MenuItem value="m.com">M.Com</MenuItem>
-                  <MenuItem value="bba">BBA</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
+            <div className="program-dropdown">
+              <Dropdown
+                selected={ques.questionTags}
+                setSelected={handleTagChange}
+                options={[
+                  "b.tech",
+                  "m.tech",
+                  "mca",
+                  "bca",
+                  "diploma",
+                  "b.com",
+                  "m.com",
+                  "bba",
+                ]}
+                icon={""}
+              />
+            </div>
             {/* <label htmlFor="ask-ques-tags">
               <h4>Tags</h4>
               <p>Add up to 5 tags to describe what your question is about</p>
@@ -177,9 +176,10 @@ function AskQuestion(props) {
             </label> */}
             <button
               type="submit"
-              className="submit-btn"
+              className="filled-btn"
               disabled={
-                ques.questionBody.replaceAll("<p><br></p>", "") === ""
+                ques.questionBody.replaceAll("<p><br></p>", "") === "" ||
+                ques.questionTags === ""
                   ? true
                   : false
               }

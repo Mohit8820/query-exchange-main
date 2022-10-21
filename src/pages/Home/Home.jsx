@@ -5,7 +5,7 @@ import "../../App.css";
 import { useHttpClient } from "../../hooks/http-hook";
 import ErrorModal from "../../components/UIElements/ErrorModal";
 import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
-import RightSidebar from "../../components/RightSidebar/RightSidebar";
+// import RightSidebar from "../../components/RightSidebar/RightSidebar";
 import HomeMainbar from "../../components/HomeMainbar/HomeMainbar";
 
 const Home = (props) => {
@@ -13,7 +13,6 @@ const Home = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const location = useLocation();
-
   useEffect(() => {
     let url;
     if (location.state) {
@@ -32,26 +31,24 @@ const Home = (props) => {
     getQuestions();
   }, [sendRequest, location.state]);
 
-  const [filter, setFilter] = useState("all");
+  // const [filter, setFilter] = useState("all");
 
-  /* const user = props.user;*/
-  function getFilter(fil) {
-    setFilter(fil);
-  }
+  // /* const user = props.user;*/
+  // function getFilter(fil) {
+  //   setFilter(fil);
+  // }
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner asOverlay />}
 
-      <div className="home-container">
-        <HomeMainbar
-          questions={questionsList}
-          filter={filter} /*user={user}*/
-        />
+      <HomeMainbar
+        questions={questionsList}
+        /* filter={filter} */
+      />
 
-        <RightSidebar onGet={getFilter} />
-      </div>
+      {/* <RightSidebar onGet={getFilter} /> */}
     </React.Fragment>
   );
 };

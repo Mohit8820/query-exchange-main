@@ -1,46 +1,49 @@
 .login-logo {
-  width: 7rem;
+  width: 8rem;
 }
 
 .auth-container {
-  width: 25rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
+  font-size: 1.6rem;
 }
 .auth-container button {
   margin-top: 1rem;
 }
 
+.auth-container .auth-sec {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+.avatar-sec {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 4rem;
+}
 .auth-container form {
-  width: 100%;
-  padding: 1.5rem 1rem;
-  background-color: white;
-  border-radius: 0.7rem;
+  width: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%),
-    0 1px 4px rgb(0 0 0 / 10%);
-}
-
-.auth-container form label input {
-  padding: 0.8rem;
-  width: 100%;
-  border: solid 0.08rem #0000003e;
-  border-radius: 0.3rem;
-  font-size: 1.1rem;
 }
 
 .auth-container form label:nth-child(1) h4,
 .auth-container form label:nth-child(2) h4,
 .auth-container form label:nth-child(3) h4 {
-  margin-bottom: 0.5rem;
-  margin-top: 0.8rem;
-  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  margin-top: 1.4rem;
 }
 
 .auth-container form label:nth-child(4) {
@@ -49,7 +52,7 @@
 
 .auth-container form label:nth-child(4) input {
   width: 15%;
-  margin: 1.1rem 0;
+  margin: 1.4rem 0;
 }
 
 .auth-container label span {

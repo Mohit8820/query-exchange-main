@@ -50,8 +50,6 @@ export const Editor = (props) => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <div>
-        <h3>Your Answer</h3>
-
         <div className="text-editor">
           {isLoading && <LoadingSpinner asOverlay />}
           <EditorToolbar />

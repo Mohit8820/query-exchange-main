@@ -3,6 +3,10 @@
   width: 64px;
   height: 64px;
   z-index: 99999999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .lds-dual-ring:after {
@@ -23,11 +27,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 99999999;
+  border-radius: var(--border-radius);
 }
 
 @keyframes lds-dual-ring {
@@ -37,4 +42,53 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.loader {
+  width: 10rem;
+  height: 10rem;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0;
+}
+.bluepart {
+  max-height: 70%;
+  width: auto;
+  position: absolute;
+  top: 0;
+  transform: rotate(-17deg) translate(110%, 18%);
+  display: block;
+  position: absolute;
+}
+
+.greenpart {
+  max-height: 63%;
+  width: auto;
+  animation: circle 2s ease-in-out infinite;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-85%, -65%);
+}
+@keyframes circle {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.quesDrop {
+  max-height: 17%;
+  width: auto;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(65%, 115%);
 }

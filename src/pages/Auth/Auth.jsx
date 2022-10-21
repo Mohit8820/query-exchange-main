@@ -7,6 +7,9 @@ import ErrorModal from "../../components/UIElements/ErrorModal";
 import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
 import "./Auth.css";
 import icon from "../../assets/icon.jpg";
+import Modal from "../../components/UIElements/Modal";
+import AvatarGenrator from "../../components/Avatar/AvatarGenrator";
+import Avatar from "avataaars";
 
 const Auth = (props) => {
   const auth = useContext(AuthContext);
@@ -47,6 +50,7 @@ const Auth = (props) => {
           name: user.name,
           email: user.email,
           password: user.password,
+          avatar: avatar,
         }
       : {
           email: user.email,
@@ -60,8 +64,12 @@ const Auth = (props) => {
         JSON.stringify(body),
         { "Content-Type": "application/json" }
       );
-
-      auth.login(responseData.userId, responseData.token);
+      auth.login(
+        responseData.userId,
+        responseData.uname,
+        responseData.uavatar,
+        responseData.token
+      );
       navigate("/home");
     } catch (err) {
       console.log(err);
@@ -111,79 +119,127 @@ const Auth = (props) => {
     }
   };
 
+  const [avatarModal, setAvatarModal] = useState(false);
+  const [avatar, setAvatar] = useState({
+    topType: "ShortHairShortCurly",
+    accessoriesType: "Blank",
+    hairColor: "Black",
+    facialHairType: "Blank",
+    facialHairColor: "Black",
+    clotheType: "",
+    clotheColor: "",
+    graphicType: "",
+    eyeType: "Default",
+    eyebrowType: "Default",
+    mouthType: "Default",
+    skinColor: "",
+  });
+
   return (
     <React.Fragment>
+      <Modal
+        onCancel={() => setAvatarModal(false)}
+        show={avatarModal}
+        header="Set Your Avatar"
+        footerClass="display-none"
+      >
+        <AvatarGenrator
+          avatar={avatar}
+          getAvatar={(a) => {
+            setAvatarModal(false);
+            setAvatar(a);
+          }}
+        />
+      </Modal>
       <ErrorModal error={error} onClear={clearError} />
 
       <div className="auth-container">
         {isLoading && <LoadingSpinner asOverlay />}
+
         {!isSignup && (
           <img src={icon} alt="stack overflow" className="login-logo" />
         )}
-        <form onSubmit={checkValidation}>
+        <div className="auth-sec">
           {isSignup && (
-            <label htmlFor="name">
-              <h4>Display Name</h4>
+            <div className="avatar-sec">
+              <Avatar
+                style={{
+                  width: "20rem",
+                  height: "20rem",
+                }}
+                avatarStyle="Circle"
+                {...avatar}
+              />
+              <button onClick={() => setAvatarModal(true)} className="text-btn">
+                Create Avatar
+              </button>
+            </div>
+          )}
+          <form onSubmit={checkValidation}>
+            {isSignup && (
+              <label htmlFor="name">
+                <h4>Display Name</h4>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  onChange={handleChange}
+                  value={user.name}
+                  maxLength="6"
+                  required
+                />
+              </label>
+            )}
+
+            <label htmlFor="email">
+              <h4>Email</h4>
               <input
-                type="text"
-                id="name"
-                name="name"
+                type="email"
+                name="email"
+                id="email"
                 onChange={handleChange}
-                value={user.name}
-                maxLength="6"
+                value={user.email}
+                onClick={() => setValidEmail(null)}
+                //onBlur={validateEmail}
                 required
               />
+              {validEmail && <span>{validEmail}</span>}
             </label>
-          )}
 
-          <label htmlFor="email">
-            <h4>Email</h4>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              onChange={handleChange}
-              value={user.email}
-              onClick={() => setValidEmail(null)}
-              //onBlur={validateEmail}
-              required
-            />
-            {validEmail && <span>{validEmail}</span>}
-          </label>
-
-          <label htmlFor="password">
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h4>Password</h4>
-              {/* {!isSignup && (
+            <label htmlFor="password">
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <h4>Password</h4>
+                {/* {!isSignup && (
                 <p style={{ color: "#007ac6", fontSize: "13px" }}>
                   forgot password?
                 </p>
               )} */}
-            </div>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              onChange={handleChange}
-              value={user.password}
-              onClick={() => setValidPassword(null)}
-              //onBlur={validatePassword}
-              required
-            />
-            {validPassword && <span>{validPassword}</span>}
-            {isSignup && (
-              <p style={{ color: "#666767", fontSize: "0.8rem" }}>
-                Passwords must contain at least six characters, including at
-                least 1 uppercase and lowercase alphabet , 1 number and 1
-                symbol.
-              </p>
-            )}
-          </label>
+              </div>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                onChange={handleChange}
+                value={user.password}
+                onClick={() => setValidPassword(null)}
+                //onBlur={validatePassword}
+                required
+              />
+              {validPassword && <span>{validPassword}</span>}
+              {isSignup && (
+                <p style={{ color: "#666767", fontSize: "1.2rem" }}>
+                  Passwords must contain at least six characters, including at
+                  least 1 uppercase and lowercase alphabet , 1 number and 1
+                  symbol.
+                </p>
+              )}
+            </label>
 
-          <button type="submit" className="filled-btn">
-            {isSignup ? "Sign up" : "Log in"}
-          </button>
-        </form>
+            <button type="submit" className="filled-btn">
+              {isSignup ? "Sign up" : "Log in"}
+            </button>
+          </form>
+        </div>
         <p>
           {isSignup ? "Already have an account?" : "Don't have an account?"}
           <button type="button" className="text-btn" onClick={handleSwitch}>

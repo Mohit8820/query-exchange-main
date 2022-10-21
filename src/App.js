@@ -8,7 +8,7 @@ import AllRoutes from "./AllRoutes";
 import LeftSidebar from "./components/LeftSidebar/LeftSidebar";
 
 function App() {
-  const { token, login, logout, userId } = useAuth();
+  const { token, login, logout, userId, uname, uavatar } = useAuth();
 
   return (
     <AuthContext.Provider
@@ -16,6 +16,8 @@ function App() {
         isLoggedIn: !!token,
         token: token,
         userId: userId,
+        uname: uname,
+        uavatar: uavatar,
         login: login,
         logout: logout,
       }}

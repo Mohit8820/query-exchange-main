@@ -1,21 +1,24 @@
 .modal {
   z-index: 100;
   position: fixed;
-  top: 22vh;
+  top: 50%;
+  transform: translateY(-50%);
   left: 10%;
   width: 80%;
   background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 0.8rem;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
   text-align: center;
+  font-size: 1.4rem;
 }
 
 .modal__header {
   border-radius: 0.8rem 0.8rem 0 0;
   width: 100%;
   padding: 1rem 0.5rem;
-  background: #39739d;
-  color: white;
+  background: var(--green-button);
+  color: var(--blue-text);
+  font-size: 1.2rem;
 }
 
 .modal__header h2 {
@@ -23,7 +26,7 @@
 }
 
 .modal__content {
-  padding: 1rem 0.5rem;
+  padding: 1rem;
 }
 
 .modal__footer {
@@ -35,8 +38,8 @@
 
 @media (min-width: 768px) {
   .modal {
-    left: calc(50% - 20rem);
-    width: 40rem;
+    left: calc(50% - 30rem);
+    width: 60rem;
   }
 }
 

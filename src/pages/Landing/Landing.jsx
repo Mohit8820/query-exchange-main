@@ -6,14 +6,8 @@ function LandingPageButton() {
       <button
         style={{
           fontSize: "2rem",
-          backgroundColor: "#1976d2",
-          textDecoration: "none",
-          borderRadius: "0.5rem",
-          padding: "1rem",
-          border: "none",
-          color: "whitesmoke",
-          boxShadow: "0 10px 25px rgb(0 0 0 / 25%)",
         }}
+        className="filled-btn"
       >
         Begin:)
       </button>
@@ -26,7 +20,6 @@ function LandingFrameMessage() {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    color: "#39739d",
     height: "100%",
   };
   return (
