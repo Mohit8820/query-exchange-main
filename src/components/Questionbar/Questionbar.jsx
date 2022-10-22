@@ -225,9 +225,11 @@ const Questionsbar = (props) => {
                   <p className="display-time">
                     asked {moment(question.askedOn).fromNow()}
                   </p>
-                  <div>
-                    {(auth.userId === question.userId ||
-                      auth.userId === "630f42be2f1ad3455ab123cc") && (
+
+                  {(auth.userId === question.userId ||
+                    auth.userId === "630f42be2f1ad3455ab123cc") && (
+                    <div>
+                      {" "}
                       <button
                         className="delete-btn"
                         onClick={() => setDeleteQues(true)}
@@ -249,8 +251,8 @@ const Questionsbar = (props) => {
                           />
                         </svg>
                       </button>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

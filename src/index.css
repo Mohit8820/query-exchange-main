@@ -61,6 +61,8 @@ svg * {
 .avatar-medium {
   max-width: 7rem;
   max-height: 7rem;
+  min-width: 7rem;
+  min-height: 7rem;
 }
 .avatar-large {
   width: 8rem;
@@ -136,7 +138,7 @@ button {
   margin: 0.5rem auto 1rem;
 }
 .rotate {
-  rotate: 180deg;
+  transform: rotate(180deg);
 }
 
 .mobile-view {
@@ -182,7 +184,7 @@ button {
 }
 @media (max-width: 450px) {
   html {
-    font-size: 50%;
+    font-size: 55%;
   }
   main {
     padding: 1.8rem 2rem 0 !important;
@@ -222,9 +224,21 @@ button {
   .program-dropdown {
     margin-bottom: 6rem !important;
   }
+  .question-title-link {
+    font-size: 1.7rem !important;
+  }
+  .display-question-details {
+    padding: 0 1.2rem !important;
+  }
+  .display-tags-time p {
+    font-size: 1.2rem !important;
+  }
+  .ques-bar-head h3 {
+    font-size: 1.7rem;
+  }
 }
-@media (max-height: 615px) {
-  .dropdown:hover .dropdown-content {
+@media (max-height: 655px) {
+  .avatar-form .dropdown:hover .dropdown-content {
     max-height: 10rem !important;
   }
 }

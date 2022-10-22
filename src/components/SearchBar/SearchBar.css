@@ -88,8 +88,8 @@ a:hover {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: inherit;
-  background-color: #39739db8;
-  color: aliceblue;
+  background-color: #5d81cb99;
+  color: #fff;
   text-align: center;
   border-radius: 0.4rem;
   padding: 0.2rem;

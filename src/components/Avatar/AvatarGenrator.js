@@ -261,34 +261,16 @@ const AvatarGenrator = ({ avatar, getAvatar }) => {
           icon="Facial Hair"
         />
         <Dropdown
-          selected={FacialHairColor}
-          setSelected={setFacialHairColor}
-          options={FacialHairColorArray}
-          icon=" ↳ ✂️ Facial Hair Color"
-        />
-        <Dropdown
-          selected={Clothes}
-          setSelected={setClothes}
-          options={ClothesArray}
-          icon=" 👔 Clothes"
-        />
-        <Dropdown
-          selected={Fabric}
-          setSelected={setFabric}
-          options={FabricArray}
-          icon=" ↳ Color Fabric"
-        />
-        <Dropdown
-          selected={Graphic}
-          setSelected={setGraphic}
-          options={GraphicArray}
-          icon="↳ Graphic"
-        />
-        <Dropdown
           selected={Eyes}
           setSelected={setEyes}
           options={EyesArray}
           icon=" 👁 Eyes"
+        />
+        <Dropdown
+          selected={FacialHairColor}
+          setSelected={setFacialHairColor}
+          options={FacialHairColorArray}
+          icon=" ↳ ✂️ Facial Hair Color"
         />
         <Dropdown
           selected={Eyebrow}
@@ -297,16 +279,34 @@ const AvatarGenrator = ({ avatar, getAvatar }) => {
           icon=" ✏️ Eyebrow"
         />
         <Dropdown
+          selected={Clothes}
+          setSelected={setClothes}
+          options={ClothesArray}
+          icon=" 👔 Clothes"
+        />
+        <Dropdown
           selected={Mouth}
           setSelected={setMouth}
           options={MouthArray}
           icon="👄 Mouth"
         />
         <Dropdown
+          selected={Fabric}
+          setSelected={setFabric}
+          options={FabricArray}
+          icon=" ↳ Color Fabric"
+        />
+        <Dropdown
           selected={Skin}
           setSelected={setSkin}
           options={SkinArray}
           icon="🎨 Skin"
+        />
+        <Dropdown
+          selected={Graphic}
+          setSelected={setGraphic}
+          options={GraphicArray}
+          icon="↳ Graphic"
         />
       </div>
       <div>

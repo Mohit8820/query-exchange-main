@@ -19,7 +19,7 @@
   border: var(--green-border) 0.2rem solid;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   padding: 0.5rem 1rem 0.2rem;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   text-align: center;
@@ -52,7 +52,7 @@
   overflow-y: scroll;
 }
 .display-ques-details {
-  padding: 1rem 2rem 0.5rem;
+  padding: 1rem 1rem 0.5rem;
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   text-align: justify;
   margin-bottom: 1rem;
@@ -81,7 +81,7 @@
 }
 .ans-item {
   position: relative;
-  padding: 1rem 2rem 0.5rem 1rem;
+  padding: 1rem 1rem 0.5rem;
   border-radius: var(--border-radius);
   text-align: justify;
   margin-bottom: 1.5rem;
@@ -92,11 +92,11 @@
     rgba(91, 128, 203, 0.22) 1.07%,
     rgba(217, 217, 217, 0) 37.19%
   );
-  border: #6487ce60 0.2rem solid;
+  border: #b0c2e7 0.2rem solid;
 }
 .ans-body {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
 .ans-btn {
   width: 10rem;

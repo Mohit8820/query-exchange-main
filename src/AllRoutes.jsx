@@ -50,15 +50,7 @@ const AllRoutes = () => {
 
   return (
     <React.Fragment>
-      <Suspense
-        fallback={
-          <div className="center">
-            <LoadingSpinner />
-          </div>
-        }
-      >
-        {routes}
-      </Suspense>
+      <Suspense fallback={<LoadingSpinner asOverlay />}>{routes}</Suspense>
     </React.Fragment>
   );
 };

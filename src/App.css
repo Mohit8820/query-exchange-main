@@ -27,10 +27,3 @@ main {
   justify-content: center;
   z-index: 9;
 }
-.center {
-  height: 80vh;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
