@@ -93,6 +93,7 @@
     rgba(217, 217, 217, 0) 37.19%
   );
   border: #b0c2e7 0.2rem solid;
+  overflow-x: scroll;
 }
 .ans-body {
   display: flex;

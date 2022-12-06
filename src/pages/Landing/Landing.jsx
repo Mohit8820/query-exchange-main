@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import doubts from "../../assets/doubts.png";
 
 function LandingPageButton() {
   return (
@@ -21,14 +22,24 @@ function LandingFrameMessage() {
     flexDirection: "column",
     justifyContent: "center",
     height: "100%",
+    marginBottom: "15rem",
+  };
+
+  const imstyle = {
+    position: "absolute",
+    zIndex: -1,
+    width: "35rem",
+    right: "2rem",
+    bottom: "0",
   };
   return (
     <div style={style}>
+      <img style={imstyle} src={doubts} alt="doubtimg" />
       <div style={{ fontSize: "7rem" }}>Hey!! Doubts?</div>
 
       <div style={{ fontSize: "2rem" }}>
-        Click on get started...ask your queries and your fellow mates and
-        teachers will answer them.
+        Click on begin...ask your queries and your friends and teachers will
+        answer them.
       </div>
       <br />
       <LandingPageButton />
