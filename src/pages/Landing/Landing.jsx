@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import doubts from "../../assets/doubts.png";
+import ask from "../../assets/ask.webp";
+import doubts from "../../assets/doubts.webp";
+import resolved from "../../assets/resolved.webp";
 
 function LandingPageButton() {
   return (
@@ -20,28 +22,34 @@ function LandingFrameMessage() {
     margin: "auto",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     height: "100%",
-    marginBottom: "15rem",
+    width: "100%",
+    textAlign: "center",
   };
 
-  const imstyle = {
-    position: "absolute",
-    zIndex: -1,
-    width: "35rem",
-    right: "2rem",
-    bottom: "0",
-  };
   return (
     <div style={style}>
-      <img style={imstyle} src={doubts} alt="doubtimg" />
-      <div style={{ fontSize: "7rem" }}>Hey!! Doubts?</div>
-
-      <div style={{ fontSize: "2rem" }}>
-        Click on begin...ask your queries and your friends and teachers will
-        answer them.
+      <div style={{ fontSize: "7rem", lineHeight: "8rem" }}>
+        Hi!! <br />
       </div>
-      <br />
+
+      <div style={{ fontSize: "1.7rem" }} className="working">
+        <div>
+          <img src={doubts} alt="doubts" />
+          <p>Doubts?</p>
+        </div>
+        <span className="direction">{">"}</span>
+        <div>
+          <img src={ask} alt="ask" />
+          <p>Ask here</p>
+        </div>
+        <span className="direction">{">"}</span>
+        <div>
+          <img src={resolved} alt="resolved" />
+          <p>Get answered</p>
+        </div>
+      </div>
       <LandingPageButton />
     </div>
   );
