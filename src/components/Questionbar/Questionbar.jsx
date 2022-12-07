@@ -131,7 +131,7 @@ const Questionsbar = (props) => {
       <Modal
         onCancel={() => setDeleteQues(false)}
         show={deleteQues}
-        header="delete request"
+        header="Delete Question"
         footer={
           <div>
             <button onClick={() => setDeleteQues(false)} className="text-btn">

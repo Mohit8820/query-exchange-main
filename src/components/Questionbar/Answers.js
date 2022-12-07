@@ -99,7 +99,7 @@ const Answers = ({ answer, question, getAnswer }) => {
       <Modal
         onCancel={() => setDeleteAns(false)}
         show={deleteAns}
-        header="delete request"
+        header="Delete Answer"
         footer={
           <div>
             <button onClick={() => setDeleteAns(false)} className="text-btn">
