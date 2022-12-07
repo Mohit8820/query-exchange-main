@@ -258,7 +258,7 @@ const Questionsbar = (props) => {
             </div>
             <div className="answers-section">
               <div className="filter-flex">
-                <span>{question.answers.length} answers</span>
+                <span>{answers.length} answers</span>
                 <Dropdown
                   selected={sort}
                   setSelected={setSort}
