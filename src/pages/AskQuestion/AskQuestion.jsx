@@ -103,10 +103,6 @@ function AskQuestion(props) {
             {isLoading && <LoadingSpinner asOverlay />}
             <label htmlFor="ask-ques-title">
               <h4>Title</h4>
-              <p>
-                Be specific and imagine you’re asking a question to another
-                person
-              </p>
               <input
                 name="questionTitle"
                 onChange={handleChange}
@@ -118,10 +114,6 @@ function AskQuestion(props) {
             </label>
             <label htmlFor="ask-ques-body">
               <h4>Body</h4>
-              <p>
-                Include all the information someone would need to answer your
-                question
-              </p>
               <div className="ques-body-editor">
                 <EditorToolbar />
                 <ReactQuill
@@ -129,7 +121,8 @@ function AskQuestion(props) {
                   name="questionBody"
                   onChange={handleChangeinBody}
                   value={ques.questionBody}
-                  placeholder={"details"}
+                  placeholder="Include all the information someone would need to answer your
+                question"
                   modules={modules}
                   formats={formats}
                   required={true}

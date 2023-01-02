@@ -1,7 +1,7 @@
 import React from "react";
-import bluepart from "../../assets/bluepart.jpg";
-import greenpart from "../../assets/greenpart.jpg";
-import quesDrop from "../../assets/quesDrop.jpg";
+import bluepart from "../../assets/bluepart.png";
+import greenpart from "../../assets/greenpart.png";
+import quesDrop from "../../assets/quesDrop.png";
 
 import "./LoadingSpinner.css";
 

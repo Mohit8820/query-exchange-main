@@ -25,6 +25,7 @@
   margin: 0;
   box-sizing: border-box;
   transition: all 0.3s;
+  font-family: inherit;
 }
 html {
   font-size: 62.5%;

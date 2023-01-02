@@ -25,14 +25,8 @@
 
 .ask-form-container h4 {
   margin-bottom: 0%;
-  margin-top: 0.6rem;
+  margin-top: 2rem;
   font-size: 1.6rem;
-}
-
-.ask-form-container label p {
-  margin: 0%;
-  font-size: 1.4rem;
-  padding: 0.1rem 0;
 }
 
 .ques-body-editor {

@@ -65,3 +65,29 @@
   min-width: 100%;
   font-size: 1.5rem;
 }
+
+.avatar-form .dropdown-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.avatar-form .dropdown-item {
+  background: none;
+  min-width: fit-content;
+  min-height: fit-content;
+  border-radius: 5rem;
+  border: 0.1rem solid var(--blue-border);
+  color: var(--blue-text);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  box-shadow: var(--shadow);
+}
+.avatar-form .dropdown-item:hover,
+.avatar-form .dropdown-item-active {
+  /* padding: 0.8rem; */
+  /* font-size: 1.2rem; */
+  background: var(--blue-button);
+  border: none;
+  color: #fff;
+}
