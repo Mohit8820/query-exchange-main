@@ -263,8 +263,8 @@ button {
     width: 15rem !important;
     height: 15rem !important;
   }
-  .dropdown p,
-  .dropdown .down {
+  .dropdown p:not(.program-dropdown .dropdown p),
+  .dropdown .down:not(.program-dropdown .dropdown .down) {
     display: none;
   }
   .dropdown-content {
@@ -276,7 +276,7 @@ button {
     width: 25rem !important;
   }
   .program-dropdown {
-    margin-bottom: 6rem !important;
+    margin-bottom: 12vh !important;
   }
   .question-title-link {
     font-size: 1.7rem !important;
@@ -289,6 +289,9 @@ button {
   }
   .ques-bar-head h3 {
     font-size: 1.7rem;
+  }
+  .lightbox .column {
+    max-width: 12% !important;
   }
 }
 @media (max-height: 655px) {

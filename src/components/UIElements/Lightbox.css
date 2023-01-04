@@ -5,13 +5,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2vw;
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 .lightbox .column img {
   aspect-ratio: 1/1;
 }
 
+.lightbox-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 100%;
+}
 /* The Modal (background) */
 .lightbox {
   /* display: none; */
@@ -23,11 +30,12 @@
   width: 100vw;
   height: 100vh;
   overflow: auto;
-  background: #102b6490;
+  background: #5d81cb60;
   backdrop-filter: blur(1rem);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
 }
 
 /* Modal Content */
@@ -36,23 +44,29 @@
   margin: auto;
   padding: 0;
   width: 100%;
+  height: 100%;
   z-index: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* The Close Button */
 .lightbox .close {
-  color: white;
   position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 35px;
+  top: 1rem;
+  right: 2.5rem;
   font-weight: bold;
+  z-index: 999;
+  font-size: 3.5rem;
+  line-height: 50%;
+  font-weight: 300;
+  color: var(--grey-text);
 }
 
 .lightbox .close:hover,
 .lightbox .close:focus {
-  color: #999;
-  text-decoration: none;
   cursor: pointer;
 }
 
@@ -60,6 +74,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .lightbox .mySlides img {
@@ -69,44 +84,20 @@
 }
 
 /* Next & previous buttons */
-.lightbox .prev,
-.lightbox .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: var(--blue-text);
-  font-weight: bold;
-  font-size: 20px;
-  transition: 0.9s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-  background: none;
+.lightbox .prev {
+  transform: scale(1.5) rotate(-90deg);
 }
-
-/* Position the "next button" to the right */
 .lightbox .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.lightbox .prev:hover,
-.lightbox .next:hover {
-  background: var(--green-button);
+  transform: scale(1.5) rotate(90deg);
 }
 
 /* Number text (1/3 etc) */
 .lightbox .numbertext {
-  color: var(--blue-text);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   padding: 8px 12px;
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 1rem;
+  left: 1rem; */
 }
 
 /* .lightbox img {
@@ -116,23 +107,16 @@
 .lightbox .caption-container {
   text-align: center;
   background-color: none;
-  color: var(--green-text);
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .lightbox .demo {
-  opacity: 0.6;
+  border: none;
+  border-radius: var(--border-radius);
 }
 
 .lightbox .active,
 .lightbox .demo:hover {
-  opacity: 1;
-}
-
-.lightbox img.hover-shadow {
-  transition: 0.3s;
-}
-
-.lightbox .hover-shadow:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* border: var(--green-border) 0.2rem solid; */
+  transform: scale(1.2);
 }

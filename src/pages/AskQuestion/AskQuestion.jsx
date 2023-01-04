@@ -150,6 +150,7 @@ function AskQuestion(props) {
           </div>
         }
       >
+        <p className="note">Maximum 5 images allowed</p>
         {images.length === 0 && <p>No image</p>}
         <div className="img">
           <input
@@ -164,8 +165,8 @@ function AskQuestion(props) {
         </div>
         {images.map((image, index) => {
           return (
-            <div>
-              <img alt="img" width={"16rem"} src={image} />
+            <div className="selected-image">
+              <img alt="img" src={image} />
               <input
                 type="text"
                 placeholder="no title"
@@ -213,7 +214,8 @@ function AskQuestion(props) {
             {isLoading && <LoadingSpinner asOverlay />}
             <label htmlFor="ask-ques-title">
               <h4>
-                Title <span>(required)</span>
+                Title
+                {/* <span>(required)</span> */}
               </h4>
               <input
                 name="questionTitle"
@@ -226,7 +228,8 @@ function AskQuestion(props) {
             </label>
             <label htmlFor="ask-ques-body">
               <h4>
-                Body <span>(required)</span>
+                Body
+                {/* <span>(required)</span> */}
               </h4>
               <div className="ques-body-editor">
                 <EditorToolbar />
@@ -252,41 +255,46 @@ function AskQuestion(props) {
               ></textarea> */}
             </label>
 
-            <h4>
-              Program <span>(required)</span>
-            </h4>
-            <div className="program-dropdown">
-              <Dropdown
-                selected={ques.questionTags}
-                setSelected={handleTagChange}
-                options={[
-                  "b.tech",
-                  "m.tech",
-                  "mca",
-                  "bca",
-                  "diploma",
-                  "b.com",
-                  "m.com",
-                  "bba",
-                ]}
-                icon={""}
-              />
+            <div className="selector-flex">
+              <div>
+                <h4>
+                  Program
+                  {/* <span>(required)</span> */}
+                </h4>
+                <div className="program-dropdown">
+                  <Dropdown
+                    selected={ques.questionTags}
+                    setSelected={handleTagChange}
+                    options={[
+                      "b.tech",
+                      "m.tech",
+                      "mca",
+                      "bca",
+                      "diploma",
+                      "b.com",
+                      "m.com",
+                      "bba",
+                    ]}
+                    icon={""}
+                  />
+                </div>
+              </div>
+              <div className="img-selector">
+                <h4>
+                  Images <span>(optional)</span>
+                </h4>
+                <div>
+                  <button
+                    className="filled-btn add-img-btn"
+                    onClick={() => setImgModal(true)}
+                    type="button"
+                  >
+                    +
+                  </button>
+                  <span className="">{images.length} selected</span>
+                </div>
+              </div>
             </div>
-
-            <h4>
-              Images <span>(optional)</span>
-            </h4>
-            <div>
-              <span>{images.length}</span>
-              <button
-                className="text-btn"
-                onClick={() => setImgModal(true)}
-                type="button"
-              >
-                add
-              </button>
-            </div>
-
             {/* <label htmlFor="ask-ques-tags">
               <h4>Tags</h4>
               <p>Add up to 5 tags to describe what your question is about</p>
@@ -300,7 +308,7 @@ function AskQuestion(props) {
             </label> */}
             <button
               type="submit"
-              className="filled-btn"
+              className="filled-btn submit-btn"
               disabled={
                 ques.questionBody.replaceAll("<p><br></p>", "") === "" ||
                 ques.questionTags === ""
