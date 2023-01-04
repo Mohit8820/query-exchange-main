@@ -41,3 +41,39 @@
   border: none;
   border-top: 1px solid #ccc;
 }
+
+.ans-img-upload-sec {
+  margin: 0 auto;
+  position: relative;
+  background-color: white;
+  box-shadow: var(--shadow);
+  border: 0.157rem #0005 solid;
+  border-radius: 0.5rem;
+  color: #757575;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+.ans-img-upload-sec .note {
+  margin-bottom: 0.5rem;
+}
+.ans-img-upload-sec h3 span {
+  font-weight: 400;
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+.ans-img-upload-sec .add-img-btn {
+  position: absolute;
+  right: 0.1rem;
+  top: 1rem;
+}
+
+.selected-images-cont {
+  max-height: 20vh;
+  overflow-y: scroll;
+}
+.selected-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
