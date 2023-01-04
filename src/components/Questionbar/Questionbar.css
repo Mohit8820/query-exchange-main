@@ -103,3 +103,14 @@
   width: 10rem;
   margin: 1rem auto 2rem;
 }
+
+.ques-images {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+.ques-images img {
+  width: 15%;
+  aspect-ratio: 1/1;
+}

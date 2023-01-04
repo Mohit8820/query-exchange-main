@@ -11,6 +11,7 @@ import Editor from "./QuillEditor/Editor";
 import "./Questionbar.css";
 import Answers from "./Answers";
 import Dropdown from "../Dropdown/Dropdown";
+import Lightbox from "../UIElements/Lightbox";
 
 const Questionsbar = (props) => {
   var question = props.question;
@@ -126,6 +127,16 @@ const Questionsbar = (props) => {
     },
   };
 
+  var url = [];
+  question.questionImage.forEach((image) => url.push(image.url));
+
+  const [slideNo, setSlideNo] = useState(0);
+  const [lightBox, setLightBox] = useState(false);
+
+  function closeLightbox() {
+    setLightBox(false);
+  }
+
   return (
     <React.Fragment>
       <Modal
@@ -158,7 +169,13 @@ const Questionsbar = (props) => {
           gotAnswer={() => setAnsBtn(false)}
         />
       </Modal>
-
+      <Lightbox
+        url={url}
+        titles={question.questionImageTitles}
+        show={lightBox}
+        slideNo={slideNo}
+        close={closeLightbox}
+      />
       <ErrorModal error={error} onClear={clearError} />
 
       <div className="question-bar">
@@ -217,14 +234,23 @@ const Questionsbar = (props) => {
                 className="ques-body"
                 dangerouslySetInnerHTML={{ __html: question.questionBody }}
               />
-              {question.questionImage &&
-                question.questionImage.map((slide, index) => {
-                  return (
-                    <React.Fragment key={index}>
-                      <img src={slide.url} />
-                    </React.Fragment>
-                  );
-                })}
+              <div className="ques-images">
+                {question.questionImage &&
+                  question.questionImage.map((slide, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <img
+                          className="cursor"
+                          src={slide.url}
+                          onClick={() => {
+                            setSlideNo(index);
+                            setLightBox(true);
+                          }}
+                        />
+                      </React.Fragment>
+                    );
+                  })}
+              </div>
 
               <div className="display-tags-time">
                 <p>{question.questionTags}</p>

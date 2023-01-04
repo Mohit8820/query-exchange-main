@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./Dropdown.css";
 
 function Dropdown({ selected, setSelected, options, icon }) {
@@ -32,18 +32,20 @@ function Dropdown({ selected, setSelected, options, icon }) {
       </div>
       {/* {isActive && ( */}
       <div className="dropdown-content">
-        {options.map((option) => (
-          <div
-            onClick={(e) => {
-              setSelected(option);
-              // setIsActive(false);
-            }}
-            className={`dropdown-item ${
-              option === selected ? "dropdown-item-active" : ""
-            }`}
-          >
-            {option}
-          </div>
+        {options.map((option, index) => (
+          <React.Fragment key={index}>
+            <div
+              onClick={(e) => {
+                setSelected(option);
+                // setIsActive(false);
+              }}
+              className={`dropdown-item ${
+                option === selected ? "dropdown-item-active" : ""
+              }`}
+            >
+              {option}
+            </div>
+          </React.Fragment>
         ))}
       </div>
       {/* )} */}

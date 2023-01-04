@@ -1,0 +1,138 @@
+.lightbox .column {
+  max-width: 6%;
+}
+.lightbox .demo-sec {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  margin-top: 2rem;
+}
+.lightbox .column img {
+  aspect-ratio: 1/1;
+}
+
+/* The Modal (background) */
+.lightbox {
+  /* display: none; */
+  position: fixed;
+  z-index: 10;
+  padding: 2rem;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background: #102b6490;
+  backdrop-filter: blur(1rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal Content */
+.lightbox-content {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 100%;
+  z-index: 15;
+}
+
+/* The Close Button */
+.lightbox .close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.lightbox .close:hover,
+.lightbox .close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mySlides {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox .mySlides img {
+  max-height: 70vh;
+  max-width: 100%;
+  width: auto;
+}
+
+/* Next & previous buttons */
+.lightbox .prev,
+.lightbox .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: var(--blue-text);
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.9s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+  background: none;
+}
+
+/* Position the "next button" to the right */
+.lightbox .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.lightbox .prev:hover,
+.lightbox .next:hover {
+  background: var(--green-button);
+}
+
+/* Number text (1/3 etc) */
+.lightbox .numbertext {
+  color: var(--blue-text);
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+  left: 1rem;
+}
+
+/* .lightbox img {
+  margin-bottom: -4px;
+} */
+
+.lightbox .caption-container {
+  text-align: center;
+  background-color: none;
+  color: var(--green-text);
+  font-size: 2rem;
+}
+
+.lightbox .demo {
+  opacity: 0.6;
+}
+
+.lightbox .active,
+.lightbox .demo:hover {
+  opacity: 1;
+}
+
+.lightbox img.hover-shadow {
+  transition: 0.3s;
+}
+
+.lightbox .hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

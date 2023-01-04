@@ -49,6 +49,9 @@ html {
 svg * {
   transition: none !important;
 }
+.cursor {
+  cursor: pointer;
+}
 
 .avatar-form {
   display: grid;
