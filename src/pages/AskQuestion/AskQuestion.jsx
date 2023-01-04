@@ -103,7 +103,6 @@ function AskQuestion(props) {
 
   const submitQues = async (event) => {
     event.preventDefault();
-    console.log(images);
     try {
       await sendRequest(
         process.env.REACT_APP_API_URL + "/questions/",
@@ -125,8 +124,6 @@ function AskQuestion(props) {
       navigate("/home");
     } catch (err) {}
   };
-
-  console.log(titles);
 
   return (
     <React.Fragment>

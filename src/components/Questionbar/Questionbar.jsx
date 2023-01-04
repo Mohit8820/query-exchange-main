@@ -169,6 +169,7 @@ const Questionsbar = (props) => {
           gotAnswer={() => setAnsBtn(false)}
         />
       </Modal>
+
       <Lightbox
         url={url}
         titles={question.questionImageTitles}
@@ -176,6 +177,7 @@ const Questionsbar = (props) => {
         slideNo={slideNo}
         close={closeLightbox}
       />
+
       <ErrorModal error={error} onClear={clearError} />
 
       <div className="question-bar">

@@ -33,7 +33,7 @@ const Lightbox = (props) => {
           <div className="lightbox-content">
             <div className="lightbox-head">
               <div className="numbertext">
-                {slideNo + 1} / {imgUrl.length}
+                {slideNo + 1} of {imgUrl.length}
               </div>
               <div className="caption-container">
                 <p id="caption">{titles[slideNo]}</p>
@@ -61,8 +61,8 @@ const Lightbox = (props) => {
                 >
                   <path
                     d="M14.0001 25H8.66009C2.04009 25 -0.679909 20.3 2.64009 14.56L5.32009 9.94002L8.00009 5.32001C11.3201 -0.419985 16.7401 -0.419985 20.0601 5.32001L22.7401 9.94002L25.4201 14.56C28.7401 20.3 26.0201 25 19.4001 25H14.0001Z"
-                    fill="url(#paint0_linear_443_408)"
-                    stroke="white"
+                    fill="white"
+                    stroke="url(#paint0_linear_443_408)"
                     stroke-miterlimit="10"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -121,8 +121,8 @@ const Lightbox = (props) => {
                 >
                   <path
                     d="M14.0001 25H8.66009C2.04009 25 -0.679909 20.3 2.64009 14.56L5.32009 9.94002L8.00009 5.32001C11.3201 -0.419985 16.7401 -0.419985 20.0601 5.32001L22.7401 9.94002L25.4201 14.56C28.7401 20.3 26.0201 25 19.4001 25H14.0001Z"
-                    fill="url(#paint0_linear_443_408)"
-                    stroke="white"
+                    fill="white"
+                    stroke="url(#paint0_linear_443_408)"
                     stroke-miterlimit="10"
                     stroke-linecap="round"
                     stroke-linejoin="round"

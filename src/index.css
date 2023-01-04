@@ -230,6 +230,9 @@ button {
   .mobile-view {
     display: block !important;
   }
+  .lightbox .column {
+    max-width: 8% !important;
+  }
 }
 @media (max-width: 550px) {
   html {

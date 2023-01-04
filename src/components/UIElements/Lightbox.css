@@ -1,5 +1,5 @@
 .lightbox .column {
-  max-width: 6%;
+  max-width: 4%;
 }
 .lightbox .demo-sec {
   display: flex;
@@ -24,13 +24,14 @@
   /* display: none; */
   position: fixed;
   z-index: 10;
-  padding: 2rem;
+  padding: 1rem;
+  padding-bottom: 5rem;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
   overflow: auto;
-  background: #5d81cb60;
+  background: #020d22da;
   backdrop-filter: blur(1rem);
   display: flex;
   align-items: center;
@@ -56,7 +57,7 @@
 .lightbox .close {
   position: absolute;
   top: 1rem;
-  right: 2.5rem;
+  right: 1rem;
   font-weight: bold;
   z-index: 999;
   font-size: 3.5rem;
@@ -111,12 +112,11 @@
 }
 
 .lightbox .demo {
-  border: none;
-  border-radius: var(--border-radius);
+  border-radius: 0.5rem;
+  opacity: 0.6;
 }
 
 .lightbox .active,
 .lightbox .demo:hover {
-  /* border: var(--green-border) 0.2rem solid; */
-  transform: scale(1.2);
+  opacity: 1;
 }

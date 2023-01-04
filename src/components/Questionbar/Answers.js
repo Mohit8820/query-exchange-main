@@ -6,6 +6,8 @@ import { useHttpClient } from "../../hooks/http-hook";
 import Modal from "../UIElements/Modal";
 import ErrorModal from "../../components/UIElements/ErrorModal";
 import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
+import Lightbox from "../UIElements/Lightbox";
+
 import "./Questionbar.css";
 
 const Answers = ({ answer, question, getAnswer }) => {
@@ -94,6 +96,16 @@ const Answers = ({ answer, question, getAnswer }) => {
     }
   }
 
+  var ansUrl = [];
+  answer.answerImage.forEach((image) => ansUrl.push(image.url));
+
+  const [slideNo, setSlideNo] = useState(0);
+  const [lightBox, setLightBox] = useState(false);
+
+  function closeLightbox() {
+    setLightBox(false);
+  }
+
   return (
     <React.Fragment>
       <Modal
@@ -113,7 +125,17 @@ const Answers = ({ answer, question, getAnswer }) => {
       >
         Do you want to delete the answer
       </Modal>
+
+      <Lightbox
+        url={ansUrl}
+        titles={answer.answerImageTitles}
+        show={lightBox}
+        slideNo={slideNo}
+        close={closeLightbox}
+      />
+
       <ErrorModal error={error} onClear={clearError} />
+
       <div className="ans-item-container">
         <div className="ans-item">
           <div className="ans-body">
@@ -167,6 +189,23 @@ const Answers = ({ answer, question, getAnswer }) => {
                 __html: answer.answerBody,
               }}
             />
+          </div>
+          <div className="ques-images">
+            {answer.answerImage &&
+              answer.answerImage.map((slide, index) => {
+                return (
+                  <React.Fragment key={index}>
+                    <img
+                      className="cursor"
+                      src={slide.url}
+                      onClick={() => {
+                        setSlideNo(index);
+                        setLightBox(true);
+                      }}
+                    />
+                  </React.Fragment>
+                );
+              })}
           </div>
           <div className="display-tags-time">
             <div style={{ marginLeft: "auto" }}>
