@@ -217,6 +217,15 @@ const Questionsbar = (props) => {
                 className="ques-body"
                 dangerouslySetInnerHTML={{ __html: question.questionBody }}
               />
+              {question.questionImage &&
+                question.questionImage.map((slide, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <img src={slide.url} />
+                    </React.Fragment>
+                  );
+                })}
+
               <div className="display-tags-time">
                 <p>{question.questionTags}</p>
                 {/* <p>{question.answers.length} answers</p> */}
@@ -259,28 +268,30 @@ const Questionsbar = (props) => {
             <div className="answers-section">
               <div className="filter-flex">
                 <span>{answers.length} answers</span>
-                <Dropdown
-                  selected={sort}
-                  setSelected={setSort}
-                  options={["latest", "oldest", "upvotes", "downvotes"]}
-                  icon={
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="2rem"
-                      height="1.2rem"
-                      viewBox="0 0 20 12"
-                      fill="none"
-                    >
-                      <path
-                        d="M1 1H19M4 6H16M8 11H12"
-                        stroke="black"
-                        strokeOpacity="0.5"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                  }
-                />
+                {answers.length > "1" && (
+                  <Dropdown
+                    selected={sort}
+                    setSelected={setSort}
+                    options={["latest", "oldest", "upvotes", "downvotes"]}
+                    icon={
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="2rem"
+                        height="1.2rem"
+                        viewBox="0 0 20 12"
+                        fill="none"
+                      >
+                        <path
+                          d="M1 1H19M4 6H16M8 11H12"
+                          stroke="black"
+                          strokeOpacity="0.5"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    }
+                  />
+                )}
               </div>
               {answers.sort(sortMethods[sort].method).map((answer, index) => {
                 return (
