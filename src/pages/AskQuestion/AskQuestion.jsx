@@ -148,7 +148,7 @@ function AskQuestion(props) {
         }
       >
         <p className="note">Maximum 5 images allowed</p>
-        {images.length === 0 && <p>No image</p>}
+        {images.length === 0 && <p>No image selected</p>}
         <div className="img">
           <input
             type="file"
@@ -212,7 +212,7 @@ function AskQuestion(props) {
             <label htmlFor="ask-ques-title">
               <h4>
                 Title
-                {/* <span>(required)</span> */}
+                <span>*</span>
               </h4>
               <input
                 name="questionTitle"
@@ -226,7 +226,7 @@ function AskQuestion(props) {
             <label htmlFor="ask-ques-body">
               <h4>
                 Body
-                {/* <span>(required)</span> */}
+                <span>*</span>
               </h4>
               <div className="ques-body-editor">
                 <EditorToolbar />
@@ -256,7 +256,7 @@ function AskQuestion(props) {
               <div>
                 <h4>
                   Program
-                  {/* <span>(required)</span> */}
+                  <span>*</span>
                 </h4>
                 <div className="program-dropdown">
                   <Dropdown
@@ -277,9 +277,7 @@ function AskQuestion(props) {
                 </div>
               </div>
               <div className="img-selector">
-                <h4>
-                  Images <span>(optional)</span>
-                </h4>
+                <h4>Images</h4>
                 <div>
                   <button
                     className="filled-btn add-img-btn"
@@ -288,8 +286,8 @@ function AskQuestion(props) {
                   >
                     +
                   </button>
-                  <span className="">{images.length} selected</span>
-                </div>
+                </div>{" "}
+                <span className="">{images.length} selected</span>
               </div>
             </div>
             {/* <label htmlFor="ask-ques-tags">
@@ -303,6 +301,13 @@ function AskQuestion(props) {
                 placeholder="e.g. (xml typescript wordpress)"
               />
             </label> */}
+            <p
+              className="note"
+              style={{ fontSize: "1.2rem", marginBottom: "7vh" }}
+            >
+              * marked fields are required.
+            </p>
+
             <button
               type="submit"
               className="filled-btn submit-btn"

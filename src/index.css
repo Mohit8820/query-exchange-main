@@ -133,12 +133,10 @@ button {
 .add-img-btn {
   font-size: 4rem;
   font-weight: 500;
-  padding: 0 1rem;
-  line-height: 50.5%;
+  line-height: 0;
   padding: 1rem;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  margin-right: 1rem;
 }
 
 .heading {
@@ -289,9 +287,7 @@ button {
   .searchInputs:active {
     width: 25rem !important;
   }
-  .program-dropdown {
-    margin-bottom: 12vh !important;
-  }
+
   .question-title-link {
     font-size: 1.7rem !important;
   }
