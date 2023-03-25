@@ -11,8 +11,8 @@
   align-items: flex-start;
   justify-content: start;
   flex-direction: column;
-  gap: 4rem;
-  height: 30rem;
+  gap: 2.5rem;
+  /* height: 30rem; */
   padding: 4rem;
   box-shadow: var(--shadow);
   border-radius: var(--border-radius);

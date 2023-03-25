@@ -264,7 +264,7 @@ const Questionsbar = (props) => {
                   </p>
 
                   {(auth.userId === question.userId ||
-                    auth.userId === "630f42be2f1ad3455ab123cc") && (
+                    auth.userId === `${process.env.REACT_APP_ADMIN_ID}`) && (
                     <div>
                       {" "}
                       <button

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import moment from "moment";
 
 import { AuthContext } from "../../contexts/auth-context";
@@ -44,6 +44,13 @@ const Answers = ({ answer, question, getAnswer }) => {
     answer.downvotes.includes(auth.userId)
   );
 
+  useEffect(() => {
+    setUpvote(answer.upvotes.length);
+    setDownvote(answer.downvotes.length);
+    setUpactive(answer.upvotes.includes(auth.userId));
+    setDownactive(answer.downvotes.includes(auth.userId));
+  }, [answer]);
+
   const ansVotePatch = async (method) => {
     try {
       const res = await sendRequest(
@@ -58,42 +65,45 @@ const Answers = ({ answer, question, getAnswer }) => {
         }
       );
       console.log(res);
+      getAnswer();
     } catch (err) {}
   };
 
   function upvotef() {
     if (upactive) {
       ansVotePatch("undoUpvote");
-      setUpactive(false);
-      setUpvote(upvote - 1);
+      //setUpactive(false);
+      //setUpvote(upvote - 1);
     } else {
       ansVotePatch("upvote");
-      setUpactive(true);
-      setUpvote(upvote + 1);
+      //setUpactive(true);
+      //setUpvote(upvote + 1);
       if (downactive) {
         ansVotePatch("undoDownvote");
-        setDownactive(false);
-        setUpvote(upvote + 1);
-        setDownvote(downvote - 1);
+        //setDownactive(false);
+        //setUpvote(upvote + 1);
+        //setDownvote(downvote - 1);
       }
     }
+    // getAnswer();
   }
   function downvotef() {
     if (downactive) {
       ansVotePatch("undoDownvote");
-      setDownactive(false);
-      setDownvote(downvote - 1);
+      //setDownactive(false);
+      //setDownvote(downvote - 1);
     } else {
       ansVotePatch("downvote");
-      setDownactive(true);
-      setDownvote(downvote + 1);
+      //setDownactive(true);
+      //setDownvote(downvote + 1);
       if (upactive) {
         ansVotePatch("undoUpvote");
-        setUpactive(false);
-        setDownvote(downvote + 1);
-        setUpvote(upvote - 1);
+        //setUpactive(false);
+        // setDownvote(downvote + 1);
+        //setUpvote(upvote - 1);
       }
     }
+    // getAnswer();
   }
 
   var ansUrl = [];
@@ -215,7 +225,7 @@ const Answers = ({ answer, question, getAnswer }) => {
               </p>
               {(auth.userId === answer.userId ||
                 auth.userId === question.userId ||
-                auth.userId === "630f42be2f1ad3455ab123cc") && (
+                auth.userId === `${process.env.REACT_APP_ADMIN_ID}`) && (
                 <button
                   className="delete-btn"
                   onClick={() => {
