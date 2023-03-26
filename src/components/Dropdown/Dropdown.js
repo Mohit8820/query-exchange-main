@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import "./Dropdown.css";
 
 function Dropdown({ selected, setSelected, options, icon }) {
-  // const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   return (
     <div className="dropdown">
-      <div
-        className="dropdown-btn"
-        // onClick={(e) => setIsActive(!isActive)}
-      >
+      <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
         <div className="type">{icon}</div>
         <p>{selected}</p>
         <svg
@@ -31,13 +28,13 @@ function Dropdown({ selected, setSelected, options, icon }) {
         </svg>
       </div>
       {/* {isActive && ( */}
-      <div className="dropdown-content">
+      <div className={`dropdown-content ${isActive ? "dropped" : ""}`}>
         {options.map((option, index) => (
           <React.Fragment key={index}>
             <div
               onClick={(e) => {
                 setSelected(option);
-                // setIsActive(false);
+                setIsActive(false);
               }}
               className={`dropdown-item ${
                 option === selected ? "dropdown-item-active" : ""

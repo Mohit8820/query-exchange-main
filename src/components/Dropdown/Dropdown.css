@@ -43,7 +43,7 @@
   border-radius: 0.5rem;
   z-index: 9999;
 }
-.dropdown:hover .dropdown-content {
+.dropped {
   padding: 1rem;
   max-height: 18rem;
   box-shadow: var(--shadow);
