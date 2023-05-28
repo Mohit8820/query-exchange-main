@@ -88,42 +88,20 @@ const Auth = (props) => {
   const [validEmail, setValidEmail] = useState(null);
   const [validPassword, setValidPassword] = useState(null);
   const [otpModal, setOtpModal] = useState(false);
-  const [otp, setOtp] = useState(null);
-  const [userOtp, setUserOtp] = useState(null);
 
   const isValidEmail = (email) => {
     return /\S+@\S+\.\S+/.test(email);
   };
 
-  const verifyMail = async () => {
+  const openOtpModal = () => {
     if (!isValidEmail(user.email)) setValidEmail("Email is invalid");
     else {
-      var digits = "0123456789";
-      let OTPpin = "";
-      for (let i = 0; i < 4; i++) {
-        OTPpin += digits[Math.floor(Math.random() * 10)];
-      }
-      setOtp(OTPpin);
-      try {
-        await sendRequest(
-          process.env.REACT_APP_API_URL + "/users/otp",
-          "POST",
-          JSON.stringify({
-            otp: OTPpin,
-            mailId: user.email,
-            secret: "lemo040520@gmail.com",
-          }),
-          { "Content-Type": "application/json" }
-        );
-        setOtpModal(true);
-      } catch (err) {
-        console.log(err);
-      }
+      setOtpModal(true);
     }
   };
 
-  const verifyOtp = () => {
-    if (userOtp === otp) {
+  const verifyOtp = (matched) => {
+    if (matched) {
       {
         setValidEmail("Verified");
       }
@@ -174,25 +152,12 @@ const Auth = (props) => {
 
   return (
     <React.Fragment>
-      <Modal
-        onCancel={() => setOtpModal(false)}
-        show={true}
-        header="Verify OTP"
-        footerClass="display-none"
-      >
-        <p>Please enter the 4 digit OTP sent to your mail id</p>
-        <input
-          type="text"
-          maxLength={4}
-          value={userOtp}
-          onChange={(e) => {
-            setUserOtp(e.target.value);
-          }}
-        />
-        <button className="filled-btn" onClick={verifyOtp}>
-          Submit
-        </button>
-      </Modal>
+      <OtpModal
+        mailTo={user.email}
+        matchOtp={verifyOtp}
+        open={otpModal}
+        onClose={setOtpModal}
+      />
       <Modal
         onCancel={() => setAvatarModal(false)}
         show={avatarModal}
@@ -253,7 +218,7 @@ const Auth = (props) => {
                   <button
                     className="text-btn"
                     type="button"
-                    onClick={verifyMail}
+                    onClick={openOtpModal}
                     disabled={validEmail === "Verified" ? true : false}
                   >
                     {validEmail === "Verified" ? "Verified" : "Verify"}
