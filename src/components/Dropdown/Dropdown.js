@@ -14,7 +14,7 @@ function Dropdown({ selected, setSelected, options, icon }) {
           height="1.2rem"
           viewBox="0 0 23 14"
           fill="none"
-          className="down"
+          className={`down ${isActive ? "down-active" : ""}`}
         >
           <path
             d="M20.7622 2.35168L12.8805 11.1467C11.9497 12.1854 10.4265 12.1854 9.4957 11.1467L1.61401 2.35168"

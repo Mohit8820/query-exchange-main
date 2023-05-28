@@ -9,7 +9,7 @@
 .contact-box {
   display: flex;
   align-items: flex-start;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 2.5rem;
   /* height: 30rem; */

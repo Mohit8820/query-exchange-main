@@ -28,7 +28,7 @@ export const useHttpClient = () => {
 
         if (!response.ok) {
           throw new Error(responseData.message);
-        } //did this because feth doesn't treat 400s and 500s as error because atleast the request is completed
+        } //did this because fetch doesn't treat 400s and 500s as error because atleast the request is completed
 
         setIsLoading(false);
         return responseData;

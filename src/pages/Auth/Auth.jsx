@@ -8,6 +8,7 @@ import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
 import "./Auth.css";
 import icon from "../../assets/icon.jpg";
 import Modal from "../../components/UIElements/Modal";
+import OtpModal from "../../components/UIElements/OtpModal";
 import AvatarGenrator from "../../components/Avatar/AvatarGenrator";
 import Avatar from "avataaars";
 
@@ -40,10 +41,6 @@ const Auth = (props) => {
   const navigate = useNavigate();
 
   const authSubmitHandler = async () => {
-    console.log("validEmail");
-    console.log(validEmail);
-    console.log("validPassword");
-    console.log(validPassword);
     var method = isSignup ? "signup" : "login";
     var body = isSignup
       ? {
@@ -90,9 +87,48 @@ const Auth = (props) => {
 
   const [validEmail, setValidEmail] = useState(null);
   const [validPassword, setValidPassword] = useState(null);
+  const [otpModal, setOtpModal] = useState(false);
+  const [otp, setOtp] = useState(null);
+  const [userOtp, setUserOtp] = useState(null);
 
   const isValidEmail = (email) => {
     return /\S+@\S+\.\S+/.test(email);
+  };
+
+  const verifyMail = async () => {
+    if (!isValidEmail(user.email)) setValidEmail("Email is invalid");
+    else {
+      var digits = "0123456789";
+      let OTPpin = "";
+      for (let i = 0; i < 4; i++) {
+        OTPpin += digits[Math.floor(Math.random() * 10)];
+      }
+      setOtp(OTPpin);
+      try {
+        await sendRequest(
+          process.env.REACT_APP_API_URL + "/users/otp",
+          "POST",
+          JSON.stringify({
+            otp: OTPpin,
+            mailId: user.email,
+            secret: "lemo040520@gmail.com",
+          }),
+          { "Content-Type": "application/json" }
+        );
+        setOtpModal(true);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  const verifyOtp = () => {
+    if (userOtp === otp) {
+      {
+        setValidEmail("Verified");
+      }
+    } else setValidEmail("OTP didn't match");
+    setOtpModal(false);
   };
 
   const checkValidation = (event) => {
@@ -106,15 +142,16 @@ const Auth = (props) => {
     } else {
       setValidPassword(null);
     }
-    console.log("pass");
-    console.log(validPassword);
-    if (!isValidEmail(user.email)) {
-      setValidEmail("Email is invalid");
-    } else {
-      setValidEmail(null);
+    if (validEmail !== "Verified" && isSignup) {
+      setValidEmail("Please verify your email");
     }
 
-    if (isOk && isValidEmail(user.email)) {
+    if (
+      isOk &&
+      isValidEmail(user.email) &&
+      (validEmail === "Verified" || !isSignup)
+    ) {
+      setValidEmail(null);
       authSubmitHandler();
     }
   };
@@ -138,6 +175,25 @@ const Auth = (props) => {
   return (
     <React.Fragment>
       <Modal
+        onCancel={() => setOtpModal(false)}
+        show={true}
+        header="Verify OTP"
+        footerClass="display-none"
+      >
+        <p>Please enter the 4 digit OTP sent to your mail id</p>
+        <input
+          type="text"
+          maxLength={4}
+          value={userOtp}
+          onChange={(e) => {
+            setUserOtp(e.target.value);
+          }}
+        />
+        <button className="filled-btn" onClick={verifyOtp}>
+          Submit
+        </button>
+      </Modal>
+      <Modal
         onCancel={() => setAvatarModal(false)}
         show={avatarModal}
         header="Set Your Avatar"
@@ -151,6 +207,7 @@ const Auth = (props) => {
           }}
         />
       </Modal>
+
       <ErrorModal error={error} onClear={clearError} />
 
       <div className="auth-container">
@@ -161,7 +218,7 @@ const Auth = (props) => {
         )}
         <div className="auth-sec">
           {isSignup && (
-            <div className="avatar-sec">
+            <div className="avatar-sec" onClick={() => setAvatarModal(true)}>
               <Avatar
                 style={{
                   width: "20rem",
@@ -170,9 +227,7 @@ const Auth = (props) => {
                 avatarStyle="Circle"
                 {...avatar}
               />
-              <button onClick={() => setAvatarModal(true)} className="text-btn">
-                Create Avatar
-              </button>
+              <button className="text-btn">Create Avatar</button>
             </div>
           )}
           <form onSubmit={checkValidation}>
@@ -192,7 +247,19 @@ const Auth = (props) => {
             )}
 
             <label htmlFor="email">
-              <h4>Email</h4>
+              <div className="email-top">
+                <h4>Email</h4>
+                {isSignup && (
+                  <button
+                    className="text-btn"
+                    type="button"
+                    onClick={verifyMail}
+                    disabled={validEmail === "Verified" ? true : false}
+                  >
+                    {validEmail === "Verified" ? "Verified" : "Verify"}
+                  </button>
+                )}
+              </div>
               <input
                 type="email"
                 name="email"
@@ -201,9 +268,12 @@ const Auth = (props) => {
                 value={user.email}
                 onClick={() => setValidEmail(null)}
                 //onBlur={validateEmail}
+                disabled={validEmail === "Verified" && isSignup ? true : false}
                 required
               />
-              {validEmail && <span>{validEmail}</span>}
+              {validEmail && validEmail !== "Verified" && (
+                <span>{validEmail}</span>
+              )}
             </label>
 
             <label htmlFor="password">
