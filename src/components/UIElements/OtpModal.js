@@ -17,7 +17,7 @@ const otpInp = {
   borderBottom: "0.1rem solid var(--blue-border)",
   letterSpacing: "2.5rem",
   fontSize: "3.5rem",
-  width: "20rem",
+  width: "70%",
   textAlign: "center",
   fontWeight: "bold",
 };
@@ -49,6 +49,7 @@ const OtpModal = ({ mailTo, matchOtp, open, onClose }) => {
       );
     } catch (err) {
       console.log(err);
+      onClose(false);
     }
     setMinutes(1);
     setSeconds(30);

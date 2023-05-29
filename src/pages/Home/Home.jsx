@@ -5,7 +5,6 @@ import "../../App.css";
 import { useHttpClient } from "../../hooks/http-hook";
 import ErrorModal from "../../components/UIElements/ErrorModal";
 import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
-// import RightSidebar from "../../components/RightSidebar/RightSidebar";
 import HomeMainbar from "../../components/HomeMainbar/HomeMainbar";
 
 const Home = (props) => {
@@ -47,8 +46,6 @@ const Home = (props) => {
         questions={questionsList}
         /* filter={filter} */
       />
-
-      {/* <RightSidebar onGet={getFilter} /> */}
     </React.Fragment>
   );
 };
