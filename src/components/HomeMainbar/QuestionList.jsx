@@ -1,5 +1,5 @@
 import React from "react";
-import Questions from "./Questions";
+import QuestionItem from "./QuestionItem";
 const QuestionList = ({ questionsList, filterval, sortVal }) => {
   const questions = questionsList;
 
@@ -64,7 +64,7 @@ const QuestionList = ({ questionsList, filterval, sortVal }) => {
         <p className="left-align">{questions.length} questions</p>
         <div className="display-questions">
           {questions.map((question) => (
-            <Questions question={question} key={question._id} />
+            <QuestionItem question={question} key={question._id} />
           ))}
         </div>
       </>
@@ -79,7 +79,7 @@ const QuestionList = ({ questionsList, filterval, sortVal }) => {
         <p className="left-align">{output.length} questions</p>
         <div className="display-questions">
           {output.map((out) => (
-            <Questions question={out} key={out._id} />
+            <QuestionItem question={out} key={out._id} />
           ))}
         </div>
       </>

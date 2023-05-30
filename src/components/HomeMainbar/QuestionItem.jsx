@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import Avatar from "avataaars";
 
-const Questions = (props) => {
+const QuestionItem = (props) => {
   const question = props.question;
   const navigate = useNavigate();
 
   const toQuestions = () => {
-    navigate("/Questions", { state: question });
+    navigate(`/Questions/${question.id}`);
     console.log(question);
   };
 
@@ -127,4 +127,4 @@ const Questions = (props) => {
   );
 };
 
-export default Questions;
+export default QuestionItem;

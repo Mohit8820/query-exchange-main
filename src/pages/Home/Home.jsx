@@ -7,7 +7,7 @@ import ErrorModal from "../../components/UIElements/ErrorModal";
 import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
 import HomeMainbar from "../../components/HomeMainbar/HomeMainbar";
 
-const Home = (props) => {
+const Home = () => {
   const [questionsList, setQuestionList] = useState([]);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 

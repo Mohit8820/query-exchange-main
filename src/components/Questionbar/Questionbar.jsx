@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
@@ -13,21 +13,14 @@ import Answers from "./Answers";
 import Dropdown from "../Dropdown/Dropdown";
 import Lightbox from "../UIElements/Lightbox";
 
-const Questionsbar = (props) => {
-  var question = props.question;
+const Questionbar = (props) => {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
-  const [answers, setAnswers] = useState(question.answers);
+  const [question, setQuestion] = useState(props.question);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-  const getAnswer = async () => {
-    try {
-      const responseData = await sendRequest(
-        `${process.env.REACT_APP_API_URL}/questions/${question.id}`
-      );
-
-      setAnswers(responseData.question.answers);
-    } catch (err) {}
+  const getAnswer = () => {
+    props.refreshAnswers();
   };
   const [ansBtn, setAnsBtn] = useState(false);
   const [deleteQues, setDeleteQues] = useState(false);
@@ -76,16 +69,15 @@ const Questionsbar = (props) => {
     if (likeactive) {
       votePatch("unlike");
       setlikeactive(false);
-      setLike(like - 1);
+      setLike((prev) => prev - 1);
     } else {
       votePatch("like");
       setlikeactive(true);
-      setLike(like + 1);
+      setLike((prev) => prev + 1);
       if (dislikeactive) {
         votePatch("undoDislike");
         setdislikeactive(false);
-        setLike(like + 1);
-        setDislike(dislike - 1);
+        setDislike((prev) => prev - 1);
       }
     }
   }
@@ -93,16 +85,15 @@ const Questionsbar = (props) => {
     if (dislikeactive) {
       votePatch("undoDislike");
       setdislikeactive(false);
-      setDislike(dislike - 1);
+      setDislike((prev) => prev - 1);
     } else {
       votePatch("dislike");
       setdislikeactive(true);
-      setDislike(dislike + 1);
+      setDislike((prev) => prev + 1);
       if (likeactive) {
         votePatch("unlike");
         setlikeactive(false);
-        setDislike(dislike + 1);
-        setLike(like - 1);
+        setLike((prev) => prev - 1);
       }
     }
   }
@@ -136,6 +127,10 @@ const Questionsbar = (props) => {
   function closeLightbox() {
     setLightBox(false);
   }
+
+  useEffect(() => {
+    setQuestion(props.question);
+  }, [props]);
 
   return (
     <React.Fragment>
@@ -295,8 +290,8 @@ const Questionsbar = (props) => {
             </div>
             <div className="answers-section">
               <div className="filter-flex">
-                <span>{answers.length} answers</span>
-                {answers.length > "1" && (
+                <span>{question.answers.length} answers</span>
+                {question.answers.length > "1" && (
                   <Dropdown
                     selected={sort}
                     setSelected={setSort}
@@ -321,16 +316,18 @@ const Questionsbar = (props) => {
                   />
                 )}
               </div>
-              {answers.sort(sortMethods[sort].method).map((answer, index) => {
-                return (
-                  <Answers
-                    answer={answer}
-                    key={index}
-                    question={question}
-                    getAnswer={() => getAnswer()}
-                  />
-                );
-              })}
+              {question.answers
+                .sort(sortMethods[sort].method)
+                .map((answer, index) => {
+                  return (
+                    <Answers
+                      answer={answer}
+                      key={index}
+                      question={{ id: question.id, userId: question.userId }}
+                      getAnswer={() => getAnswer()}
+                    />
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -342,4 +339,4 @@ const Questionsbar = (props) => {
   );
 };
 
-export default Questionsbar;
+export default Questionbar;

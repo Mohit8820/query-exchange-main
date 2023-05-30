@@ -29,7 +29,7 @@ const AllRoutes = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/AskQuestion" element={<AskQuestion />} />
-        <Route path="/Questions" element={<Questions />} />
+        <Route path="/Questions/:qId" element={<Questions />} />
         <Route path="/users" element={<Users />} />
         <Route path="*" element={<Navigate replace to="/home" />} />
       </Routes>
@@ -41,7 +41,7 @@ const AllRoutes = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/Auth" element={<Auth />} />
-        <Route path="/Questions" element={<Questions />} />
+        <Route path="/Questions/:qId" element={<Questions />} />
         <Route path="/users" element={<Users />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
