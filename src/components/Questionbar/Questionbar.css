@@ -58,11 +58,7 @@
   margin-bottom: 1rem;
   box-shadow: var(--shadow);
   margin-right: 0.5rem;
-  background: linear-gradient(
-    0deg,
-    rgba(114, 179, 72, 0.3) -5.77%,
-    rgba(255, 255, 255, 0.19) 50%
-  );
+  background: var(--bg-green);
   border: #c8e1b8 0.2rem solid;
   border-top: none;
 }

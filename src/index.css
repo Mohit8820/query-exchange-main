@@ -13,6 +13,11 @@
     #5d81cb33 0%,
     rgba(217, 217, 217, 0) 80.31%
   ); /*bg blue*/
+  --bg-green: linear-gradient(
+    0deg,
+    rgba(114, 179, 72, 0.3) -5.77%,
+    rgba(255, 255, 255, 0.19) 50%
+  ); /*bg green*/
   /*background-color: aliceblue; bg green*/
   --blue-border: #5d81cb60; /*blue border*/
   --green-border: #72b34863; /*green border*/
@@ -89,6 +94,22 @@ input {
   padding: 1rem;
   width: 100%;
   font-size: 1.4rem;
+}
+textarea {
+  height: 15vh;
+  box-shadow: var(--shadow);
+  border: 0.157rem #0005 solid;
+  border-radius: 0.5rem;
+  color: #757575;
+  padding: 1rem;
+  width: 100%;
+  font-size: 1.4rem;
+}
+/* input:focus, */
+textarea:focus {
+  outline: none !important;
+  /* border: 0.2rem var(--blue-border) solid;
+  border-radius: 0.4rem; */
 }
 
 button {
@@ -224,6 +245,22 @@ button {
   }
   .users-list {
     grid-template-columns: 1fr !important;
+  }
+  .contact-box {
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+  }
+  .contact-form {
+    margin-top: 1rem;
+  }
+  .contact-box-left {
+    padding: 5rem !important;
+    margin: auto !important;
+    aspect-ratio: unset !important;
+  }
+  .icons,
+  .signature {
+    margin: 0 !important;
   }
 }
 @media (max-width: 815px) {

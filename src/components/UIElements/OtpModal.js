@@ -43,7 +43,7 @@ const OtpModal = ({ mailTo, matchOtp, open, onClose }) => {
         JSON.stringify({
           otp: OTPpin,
           mailId: mailTo,
-          secret: "lemo040520@gmail.com",
+          secret: process.env.REACT_APP_MAIL_SECRET,
         }),
         { "Content-Type": "application/json" }
       );

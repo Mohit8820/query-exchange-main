@@ -32,18 +32,10 @@
   border-radius: 50rem;
 }
 .user-item:hover {
-  background: linear-gradient(
-    0deg,
-    rgba(114, 179, 72, 0.3) -5.77%,
-    rgba(255, 255, 255, 0.19) 50%
-  );
+  background: var(--bg-green);
 }
 .user-item:active {
-  background: linear-gradient(
-    0deg,
-    rgba(114, 179, 72, 0.3) -5.77%,
-    rgba(255, 255, 255, 0.19) 50%
-  );
+  background: var(--bg-green);
   box-shadow: none;
 }
 .user-item .avatar-large {
