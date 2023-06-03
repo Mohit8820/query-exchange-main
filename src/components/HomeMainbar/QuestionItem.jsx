@@ -24,7 +24,7 @@ const QuestionItem = (props) => {
         <Avatar
           className="avatar-medium"
           avatarStyle="Circle"
-          {...question.userPostedAvatar}
+          {...question.userId.avatar}
         />
 
         <div className="display-question-details">
@@ -118,7 +118,7 @@ const QuestionItem = (props) => {
           <p>Asked By : {question.userPosted}</p>
         </div>
         <div style={{ textAlign: "right" }}>
-          <p>{question.answers.length} answers</p>
+          <p>{question.answersLength} answers</p>
           <p>{question.likes.length} upvotes</p>
           <p>{question.dislikes.length} downvotes</p>
         </div>

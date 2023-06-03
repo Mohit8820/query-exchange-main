@@ -31,7 +31,7 @@ const HomeMainbar = (props) => {
       method: (a, b) => (a.dislikes.length > b.dislikes.length ? -1 : 1),
     },
     unanswered: {
-      method: (a, b) => (a.answers.length > b.answers.length ? 1 : -1),
+      method: (a, b) => (a.answersLength > b.answersLength ? 1 : -1),
     },
   };
 

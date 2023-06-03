@@ -156,7 +156,12 @@ const Navbar = () => {
                 <div className="dropdown-user">
                   <div
                     onClick={() => {
-                      navigate("/home", { state: auth.userId });
+                      navigate("/home", {
+                        state: {
+                          userId: auth.userId,
+                          userAvatar: userDetail.avatar,
+                        },
+                      });
                     }}
                   >
                     My questions

@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     let url;
     if (location.state) {
-      url = `${process.env.REACT_APP_API_URL}/questions/user/${location.state}`;
+      url = `${process.env.REACT_APP_API_URL}/questions/user/${location.state.userId}`;
     } else {
       url = process.env.REACT_APP_API_URL + "/questions/";
     }
@@ -23,7 +23,15 @@ const Home = () => {
     const getQuestions = async () => {
       try {
         const responseData = await sendRequest(url);
-
+        if (location.state) {
+          responseData.questions = responseData.questions.map((question) => ({
+            ...question,
+            userId: {
+              id: location.state.userId,
+              avatar: location.state.userAvatar,
+            },
+          }));
+        }
         setQuestionList(responseData.questions);
       } catch (err) {}
     };

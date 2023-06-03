@@ -40,9 +40,9 @@ export const Users = () => {
   }, [sendRequest]);
 
   const navigate = useNavigate();
-  const showQuestions = (userId) => {
+  const showQuestions = (userId, userAvatar) => {
     console.log(userId);
-    navigate("/home", { state: userId });
+    navigate("/home", { state: { userId, userAvatar } });
   };
 
   return (
@@ -58,7 +58,10 @@ export const Users = () => {
           <React.Fragment key={i}>
             <div className="user-item-container">
               {" "}
-              <div className="user-item" onClick={() => showQuestions(user.id)}>
+              <div
+                className="user-item"
+                onClick={() => showQuestions(user.id, user.avatar)}
+              >
                 <Avatar
                   className="avatar-large"
                   avatarStyle="Circle"
